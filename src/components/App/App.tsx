@@ -1,29 +1,27 @@
 import React from "react";
-import styles from "./App.module.scss";
+/* import styles from "./App.module.scss";
 import cn from "classnames";
-import { useAllStarships } from "../../utils/SwapiService";
+import { useAllStarships } from "../../utils/SwapiService"; */
+import Header from "../Header";
+import RandomPlanet from "../RandomPlanet";
+import ItemList from "../ItemList";
+import PersonDetails from "../PersonDetails";
 
 const App: React.FC = () => {
-  const { data, error, loading } = useAllStarships();
-
-  if (loading) {
-    return <div>Загрузка</div>;
-  }
-
   return (
-    <>
-      {!error ? (
-        <div className={cn(styles.app)}>
-          <div>Данные</div>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
+    <div>
+      <Header />
+      <RandomPlanet />
+
+      <div className="row mb2">
+        <div className="col-md-6">
+          <ItemList />
         </div>
-      ) : (
-        <div className={cn(styles.app)}>
-          <div>Ошибка</div>
-          {error}
+        <div className="col-md-6">
+          <PersonDetails />
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 };
 
