@@ -1,22 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import cn from "classnames";
 import styles from "./RandomPlanet.module.scss";
 import { usePlanet } from "../../utils/SwapiService";
+import { useInterval } from "../../hooks/useInterval";
 
 const getRundomPlanetId = () => Math.floor(Math.random() * 25) + 2;
 
 const RandomPlanet: React.FC = () => {
   const [idPlanet, setIdPlanet] = useState(getRundomPlanetId());
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIdPlanet(getRundomPlanetId());
-    }, 4000);
-
-    return () => {
-      clearInterval(timer);
-    };
-  }, []);
+  
+  const updatePlanet = useCallback(() => setIdPlanet(getRundomPlanetId()), []);
+  
+  useInterval(updatePlanet, 4000);
 
   const {
     data: { name, population, rotation_period, diameter },
