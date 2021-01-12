@@ -1,10 +1,14 @@
 import React from "react";
 import styles from "./App.module.scss";
 import cn from "classnames";
-import { useFetch } from "../hooks/useFetch";
+import { useAllStarships } from "../utils/SwapiService";
 
 const App: React.FC = () => {
-  const { data, error, loading } = useFetch("https://swapi.dev/api/planets/1/");
+  /* const { data, error, loading } = useFetch("https://swapi.dev/api/planets/1/"); */
+
+  /* const { data, error, loading } = useAllPeople(); */
+
+  const { data, error, loading } = useAllStarships();
 
   if (loading) {
     return <div>Загрузка</div>;
