@@ -1,9 +1,10 @@
 import React from "react";
-/* import styles from "./Header.module.scss"; */
+import cn from "classnames";
+import styles from "./Header.module.scss";
 
 const Header: React.FC = () => {
   return (
-    <div className="header d-flex">
+    <div className={cn("d-flex", styles.header)}>
       <h3>
         <a href="/#">Star DB</a>
       </h3>
