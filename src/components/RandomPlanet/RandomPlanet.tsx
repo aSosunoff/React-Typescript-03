@@ -5,6 +5,7 @@ import { usePlanet } from "../../utils/SwapiService";
 import { useInterval } from "../../hooks/useInterval";
 import Spinner from "../Spinner";
 import PlanetView from "./PlanetView";
+import ErrorIndicator from "../ErrorIndicator";
 
 const getRundomPlanetId = () => Math.floor(Math.random() * 25) + 2;
 
@@ -15,11 +16,17 @@ const RandomPlanet: React.FC = () => {
 
   useInterval(updatePlanet, 4000);
 
-  const { data, loading } = usePlanet(idPlanet);
+  const { data, loading, error } = usePlanet(idPlanet);
 
   return (
     <div className={cn("jumbotron rounded", styles["random-planet"])}>
-      {loading ? <Spinner /> : <PlanetView planet={data} idPlanet={idPlanet} />}
+      {loading ? (
+        <Spinner />
+      ) : error ? (
+        <ErrorIndicator />
+      ) : (
+        <PlanetView planet={data} idPlanet={idPlanet} />
+      )}
     </div>
   );
 };
