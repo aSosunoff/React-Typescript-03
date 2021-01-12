@@ -1,29 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import styles from "./RandomPlanet.module.scss";
+import { usePlanet } from "../../utils/SwapiService";
+
+const getRundomPlanetId = () => Math.floor(Math.random() * 25) + 2;
 
 const RandomPlanet: React.FC = () => {
+  const [idPlanet, setIdPlanet] = useState(getRundomPlanetId());
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIdPlanet(getRundomPlanetId());
+    }, 4000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  const {
+    data: { name, population, rotation_period, diameter },
+  } = usePlanet(idPlanet);
+
   return (
     <div className={cn("jumbotron rounded", styles["random-planet"])}>
       <img
         className={styles["planet-image"]}
-        alt="img"
-        src="https://starwars-visualguide.com/assets/img/planets/5.jpg"
+        alt={`${idPlanet}.jpg`}
+        src={`https://starwars-visualguide.com/assets/img/planets/${idPlanet}.jpg`}
       />
       <div>
-        <h4>Planet Name</h4>
+        <h4>{name}</h4>
         <ul className={cn("list-group-flush", styles["list-group"])}>
           <li className={cn("list-group-item", styles["list-group-item"])}>
             <span className={styles["term"]}>Population</span>
-            <span>123124</span>
+            <span>{population}</span>
           </li>
+
           <li className={cn("list-group-item", styles["list-group-item"])}>
             <span className={styles["term"]}>Rotation Period</span>
-            <span>43</span>
+            <span>{rotation_period}</span>
           </li>
+
           <li className={cn("list-group-item", styles["list-group-item"])}>
             <span className={styles["term"]}>Diameter</span>
-            <span>100</span>
+            <span>{diameter}</span>
           </li>
         </ul>
       </div>
