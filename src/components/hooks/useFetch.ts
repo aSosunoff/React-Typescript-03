@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 type UseFetchType<T> = {
     data: T,
@@ -15,6 +15,18 @@ export const useFetch = <T = {}>(url: string): UseFetchType<T> => {
 
     const [dataState, setDataState] = useState<UseFetchType<T>>(initialState);
 
+    const setData = useCallback((data) => setDataState(() => ({
+        data,
+        error: null,
+        loading: false,
+    })), []);
+
+    const setError = useCallback((error) => setDataState(() => ({
+        error,
+        data: {} as T,
+        loading: false,
+    })), []);
+
     useEffect(() => {
         setDataState(initialState);
 
@@ -30,21 +42,13 @@ export const useFetch = <T = {}>(url: string): UseFetchType<T> => {
 
                 return response.json();
             })
-            .then((data) => !canceled && setDataState(() => ({
-                data,
-                error: null,
-                loading: false,
-            })))
-            .catch((error) => !canceled && setDataState(() => ({
-                error: error.message,
-                data: {} as T,
-                loading: false,
-            })));
+            .then((data) => !canceled && setData(data))
+            .catch((error) => !canceled && setError(error.message));
 
         return () => {
             canceled = true;
         };
-    }, [initialState, url]);
+    }, [initialState, setData, setError, url]);
 
     return dataState;
 };
