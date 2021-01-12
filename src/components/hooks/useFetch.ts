@@ -1,10 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-export const useFetch = <T = {}>(url: string): [T, any] => {
-    const [body, setBody] = useState<any>();
-    const [error, setError] = useState<any>();
+type UseFetchType<T> = {
+    data: T,
+    loading: boolean,
+    error: any
+};
+
+export const useFetch = <T = {}>(url: string): UseFetchType<T> => {
+    const initialState = useMemo<UseFetchType<T>>(() => ({
+        data: {} as T,
+        error: null,
+        loading: true
+    }), []);
+
+    const [dataState, setDataState] = useState<UseFetchType<T>>(initialState);
 
     useEffect(() => {
+        setDataState(initialState);
+
         let canceled = false;
 
         fetch(url)
@@ -17,13 +30,21 @@ export const useFetch = <T = {}>(url: string): [T, any] => {
 
                 return response.json();
             })
-            .then((data) => !canceled && setBody(data))
-            .catch((error) => !canceled && setError(error.message));
+            .then((data) => !canceled && setDataState(() => ({
+                data,
+                error: null,
+                loading: false,
+            })))
+            .catch((error) => !canceled && setDataState(() => ({
+                error: error.message,
+                data: {} as T,
+                loading: false,
+            })));
 
         return () => {
             canceled = true;
         };
-    }, [url]);
+    }, [initialState, url]);
 
-    return [body, error];
+    return dataState;
 };
