@@ -13,15 +13,15 @@ const RandomPlanet: React.FC = () => {
       <div>
         <h4>Planet Name</h4>
         <ul className={cn("list-group-flush", styles["list-group"])}>
-          <li className={styles["list-group-item"]}>
+          <li className={cn("list-group-item", styles["list-group-item"])}>
             <span className={styles["term"]}>Population</span>
             <span>123124</span>
           </li>
-          <li className={styles["list-group-item"]}>
+          <li className={cn("list-group-item", styles["list-group-item"])}>
             <span className={styles["term"]}>Rotation Period</span>
             <span>43</span>
           </li>
-          <li className={styles["list-group-item"]}>
+          <li className={cn("list-group-item", styles["list-group-item"])}>
             <span className={styles["term"]}>Diameter</span>
             <span>100</span>
           </li>

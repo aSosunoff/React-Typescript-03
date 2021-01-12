@@ -14,15 +14,15 @@ const PersonDetails: React.FC = () => {
       <div className="card-body">
         <h4>R2-D2</h4>
         <ul className="list-group list-group-flush">
-          <li className={styles["list-group-item"]}>
+          <li className={cn("list-group-item", styles["list-group-item"])}>
             <span className={styles["term"]}>Gender</span>
             <span>male</span>
           </li>
-          <li className={styles["list-group-item"]}>
+          <li className={cn("list-group-item", styles["list-group-item"])}>
             <span className={styles["term"]}>Birth Year</span>
             <span>43</span>
           </li>
-          <li className={styles["list-group-item"]}>
+          <li className={cn("list-group-item", styles["list-group-item"])}>
             <span className={styles["term"]}>Eye Color</span>
             <span>red</span>
           </li>
