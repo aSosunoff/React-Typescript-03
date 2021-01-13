@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import cn from "classnames";
 import styles from "./ItemList.module.scss";
 import { useAllPeople } from "../../utils/SwapiService";
