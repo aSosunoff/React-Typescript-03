@@ -6,48 +6,47 @@ import styles from "./App.module.scss";
 import ErrorButton from "../ErrorButton";
 import PeoplePage from "../PeoplePage";
 import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
+import { withComponent } from "../../HOC/withComponent";
 
 const App: React.FC = () => {
   const [showRandomPlanet, setShowRandomPlanet] = useState(true);
   const [isRandom, setRandom] = useState(false);
 
   return (
-    <ErrorBoundaryIndicator>
-      <div className={cn("container", styles["stardb-app"])}>
-        <Header />
+    <div className={cn("container", styles["stardb-app"])}>
+      <Header />
 
-        {showRandomPlanet ? <RandomPlanet isInterval={isRandom} /> : null}
+      {showRandomPlanet ? <RandomPlanet isInterval={isRandom} /> : null}
 
-        <div className={cn("row mb2", styles["button-row"])}>
-          <div className="custom-control custom-switch">
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customSwitch1"
-              checked={isRandom}
-              onChange={() => setRandom((prev) => !prev)}
-            />
-            <label className="custom-control-label" htmlFor="customSwitch1">
-              Toggle random
-            </label>
-          </div>
+      <div className={cn("row mb2", styles["button-row"])}>
+        <div className="custom-control custom-switch">
+          <input
+            type="checkbox"
+            className="custom-control-input"
+            id="customSwitch1"
+            checked={isRandom}
+            onChange={() => setRandom((prev) => !prev)}
+          />
+          <label className="custom-control-label" htmlFor="customSwitch1">
+            Toggle random
+          </label>
         </div>
-
-        <div className={cn("row mb2", styles["button-row"])}>
-          <button
-            className="toggle-planet btn btn-warning btn-lg"
-            onClick={() => setShowRandomPlanet((prev) => !prev)}
-          >
-            Toggle Random Planet
-          </button>
-
-          <ErrorButton />
-        </div>
-
-        <PeoplePage />
       </div>
-    </ErrorBoundaryIndicator>
+
+      <div className={cn("row mb2", styles["button-row"])}>
+        <button
+          className="toggle-planet btn btn-warning btn-lg"
+          onClick={() => setShowRandomPlanet((prev) => !prev)}
+        >
+          Toggle Random Planet
+        </button>
+
+        <ErrorButton />
+      </div>
+
+      <PeoplePage />
+    </div>
   );
 };
 
-export default App;
+export default withComponent(ErrorBoundaryIndicator)(App);
