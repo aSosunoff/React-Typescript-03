@@ -1,4 +1,5 @@
 export type PersonType = {
+    id: string,
     birth_year: string,
     created: string,
     edited: string,
