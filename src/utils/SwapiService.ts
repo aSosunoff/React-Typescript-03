@@ -14,8 +14,22 @@ enum ApiResource {
     Starships = 'starships',
 }
 
-export const useAllPeople = () =>
-    useFetch<PeopleType>(`${API_BASE}/${ApiResource.People}/`);
+export const useAllPeople = () => {
+    const dataState = useFetch<PeopleType>(`${API_BASE}/${ApiResource.People}/`)
+
+    const people = dataState.data?.results.map((people) => {
+        const match = people.url.match(/\/(?<ID>[0-9]+)\/$/);
+        return { ...people, id: match?.groups?.ID || '0' };
+    });
+
+    return {
+        ...dataState,
+        data: {
+            ...dataState.data,
+            results: people
+        }
+    }
+};
 
 export const usePerson = (id: number) =>
     useFetch<PersonType>(`${API_BASE}/${ApiResource.People}/${id}`);
