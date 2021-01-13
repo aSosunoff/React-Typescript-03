@@ -1,7 +1,4 @@
 import React from "react";
-/* import styles from "./App.module.scss";
-import cn from "classnames";
-import { useAllStarships } from "../../utils/SwapiService"; */
 import Header from "../Header";
 import RandomPlanet from "../RandomPlanet";
 import ItemList from "../ItemList";
@@ -9,7 +6,7 @@ import PersonDetails from "../PersonDetails";
 
 const App: React.FC = () => {
   return (
-    <div>
+    <div className="stardb-app container">
       <Header />
       <RandomPlanet />
 
