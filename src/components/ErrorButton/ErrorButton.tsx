@@ -4,7 +4,7 @@ const ErrorButton: React.FC = () => {
   const [renderError, setRenderError] = useState(false);
 
   if (renderError) {
-    throw new Error("ops");
+    throw new Error("oooops");
   }
 
   return (
