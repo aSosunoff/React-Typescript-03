@@ -1,5 +1,5 @@
 import React from "react";
-import ErrorBoundary from "../ErrorBoundary";
+import ErrorBoundary from "../../HOC/ErrorBoundary";
 import ErrorIndicator from "../ErrorIndicator";
 
 const ErrorBoundaryIndicator: React.FC = ({ children }) => {
