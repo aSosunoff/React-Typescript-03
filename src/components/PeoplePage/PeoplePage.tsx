@@ -1,23 +1,37 @@
-import React from "react";
-import ItemList from "../ItemList";
-import PersonDetails from "../PersonDetails";
-import { PersonProvider } from "../../context/personContext";
+import React, { useState } from "react";
 import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
 import { withComponent } from "../../HOC/withComponent";
-/* import styles from "./PeoplePage.module.scss"; */
+import { PersonType } from "../../types/PersonType";
+import { useAllPeople, usePerson } from "../../utils/SwapiService";
+import PersonDetails from "../PersonDetails/PersonDetails";
+import Page from "../Page";
+import ItemList from "../ItemList";
 
 const PeoplePage: React.FC = () => {
+  const [idPerson, setIdPerson] = useState("0");
+
+  const { data, loading: showSpinnerDetails } = usePerson(idPerson);
+
+  const {
+    data: { results = [] } = {},
+    loading: showSpinnerList,
+  } = useAllPeople();
+
   return (
-    <PersonProvider>
-      <div className="row mb2">
-        <div className="col-md-6">
-          <ItemList />
-        </div>
-        <div className="col-md-6">
-          <PersonDetails />
-        </div>
-      </div>
-    </PersonProvider>
+    <Page
+      showSpinnerDetails={showSpinnerDetails}
+      renderItems={() => (
+        <ItemList<PersonType>
+          list={results}
+          showSpinner={showSpinnerList}
+          setId={setIdPerson}
+          renderTitle={({ name, gender, birth_year }) =>
+            `${name} (${gender}), ${birth_year}`
+          }
+        />
+      )}
+      renderDetails={() => <PersonDetails person={data} />}
+    />
   );
 };
 

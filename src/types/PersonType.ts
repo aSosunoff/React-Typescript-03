@@ -1,5 +1,6 @@
+import { IdType } from "./IdType";
+
 export type PersonType = {
-    id: string,
     birth_year: string,
     created: string,
     edited: string,
@@ -16,4 +17,4 @@ export type PersonType = {
     starships: string[],
     url: string,
     vehicles: string[],
-};
+} & IdType;

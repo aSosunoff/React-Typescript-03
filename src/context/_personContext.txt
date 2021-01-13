@@ -11,16 +11,16 @@ PersonContext.displayName = "PersonContext";
 export const usePersonContext = () => useContext(PersonContext);
 
 export const PersonProvider: React.FC = ({ children }) => {
-  const [idPerson, setIdPerson] = useState("0");
+  const [idPerson, setId] = useState("0");
 
   const { data, loading } = usePerson(idPerson);
 
   return (
     <PersonContext.Provider
       value={{
-        person: data,
+        item: data,
         loading,
-        setIdPerson,
+        setId,
       }}
     >
       {children}
