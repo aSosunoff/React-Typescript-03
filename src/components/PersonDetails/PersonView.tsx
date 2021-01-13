@@ -2,6 +2,7 @@ import React from "react";
 import cn from "classnames";
 import { PersonType } from "../../types/PersonType";
 import styles from "./PersonDetails.module.scss";
+import ErrorButton from "../ErrorButton";
 
 const PersonView: React.FC<{ person?: PersonType }> = ({ person }) => {
   if (!person) {
@@ -37,6 +38,8 @@ const PersonView: React.FC<{ person?: PersonType }> = ({ person }) => {
             <span>{eye_color}</span>
           </li>
         </ul>
+
+        <ErrorButton />
       </div>
     </div>
   );
