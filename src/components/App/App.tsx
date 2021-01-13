@@ -4,10 +4,10 @@ import Header from "../Header";
 import RandomPlanet from "../RandomPlanet";
 import styles from "./App.module.scss";
 import ErrorButton from "../ErrorButton";
-import PeoplePage from "../PeoplePage";
+import PeoplePage from "../Pages/PeoplePage";
 import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
 import { withComponent } from "../../HOC/withComponent";
-import PlanetPage from "../PlanetPage";
+import PlanetPage from "../Pages/PlanetPage";
 
 const App: React.FC = () => {
   const [showRandomPlanet, setShowRandomPlanet] = useState(true);

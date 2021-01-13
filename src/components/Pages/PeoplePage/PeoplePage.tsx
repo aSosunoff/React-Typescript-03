@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
-import { withComponent } from "../../HOC/withComponent";
-import { PersonType } from "../../types/PersonType";
-import { useAllPeople, usePerson } from "../../utils/SwapiService";
-import PersonDetails from "../PersonDetails/PersonDetails";
+import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
+import { withComponent } from "../../../HOC/withComponent";
+import { PersonType } from "../../../types/PersonType";
+import { useAllPeople, usePerson } from "../../../utils/SwapiService";
+import PersonDetails from "../../PersonDetails/PersonDetails";
 import Page from "../Page";
-import ItemList from "../ItemList";
+import ItemList from "../../ItemList";
 
 const PeoplePage: React.FC = () => {
   const [idPerson, setIdPerson] = useState("0");

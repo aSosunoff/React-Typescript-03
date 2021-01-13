@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
-import { withComponent } from "../../HOC/withComponent";
-import { useAllPlanet, usePlanet } from "../../utils/SwapiService";
+import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
+import { withComponent } from "../../../HOC/withComponent";
+import { useAllPlanet, usePlanet } from "../../../utils/SwapiService";
 import Page from "../Page";
-import ItemList from "../ItemList";
-import { PlanetType } from "../../types/PlanetType";
-import PlanetDetails from "../PlanetDetails";
+import ItemList from "../../ItemList";
+import { PlanetType } from "../../../types/PlanetType";
+import PlanetDetails from "../../PlanetDetails";
 
 const PlanetPage: React.FC = () => {
   const [id, setId] = useState("0");
