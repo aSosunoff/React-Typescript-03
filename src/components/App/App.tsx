@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import cn from "classnames";
 import Header from "../Header";
 import RandomPlanet from "../RandomPlanet";
@@ -12,11 +12,6 @@ import ErrorButton from "../ErrorButton";
 const App: React.FC = () => {
   const [showRandomPlanet, setShowRandomPlanet] = useState(true);
 
-  const toggleRandomPlanet = useCallback(
-    () => setShowRandomPlanet((prev) => !prev),
-    []
-  );
-
   return (
     <div className={cn("container", styles["stardb-app"])}>
       <Header />
@@ -26,7 +21,7 @@ const App: React.FC = () => {
       <div className={cn("row mb2", styles["button-row"])}>
         <button
           className="toggle-planet btn btn-warning btn-lg"
-          onClick={toggleRandomPlanet}
+          onClick={() => setShowRandomPlanet((prev) => !prev)}
         >
           Toggle Random Planet
         </button>
