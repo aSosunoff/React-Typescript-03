@@ -3,8 +3,11 @@ import cn from "classnames";
 import { PlanetType } from "../../types/PlanetType";
 import styles from "./RandomPlanet.module.scss";
 
-const PlanetView: React.FC<{ planet: PlanetType; idPlanet: number }> = ({
-  planet: { name, population, rotation_period, diameter },
+const PlanetView: React.FC<{
+  planet?: PlanetType;
+  idPlanet: number;
+}> = ({
+  planet: { name, population, rotation_period, diameter } = {},
   idPlanet,
 }) => (
   <>
