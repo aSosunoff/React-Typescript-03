@@ -2,11 +2,11 @@ import React from "react";
 import cn from "classnames";
 import styles from "./ItemList.module.scss";
 import { PersonType } from "../../types/PersonType";
-import { PersonContextFilterType } from "../../types/PersonContextFilterType";
+import { usePersonContext } from "../../context/personContext";
 
-const Item: React.FC<
-  { item: PersonType } & Pick<PersonContextFilterType, "setIdPerson">
-> = ({ item, setIdPerson }) => {
+const Item: React.FC<{ item: PersonType }> = ({ item }) => {
+  const { setIdPerson } = usePersonContext();
+
   return (
     <li
       key={item.id}
