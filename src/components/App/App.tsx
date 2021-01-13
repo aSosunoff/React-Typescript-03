@@ -4,7 +4,6 @@ import Header from "../Header";
 import RandomPlanet from "../RandomPlanet";
 import ItemList from "../ItemList";
 import PersonDetails from "../PersonDetails";
-import { withContext } from "../../HOC/withContext";
 import { PersonProvider } from "../../context/personContext";
 import styles from "./App.module.scss";
 import ErrorButton from "../ErrorButton";
@@ -28,16 +27,18 @@ const App: React.FC = () => {
         <ErrorButton />
       </div>
 
-      <div className="row mb2">
-        <div className="col-md-6">
-          <ItemList />
+      <PersonProvider>
+        <div className="row mb2">
+          <div className="col-md-6">
+            <ItemList />
+          </div>
+          <div className="col-md-6">
+            <PersonDetails />
+          </div>
         </div>
-        <div className="col-md-6">
-          <PersonDetails />
-        </div>
-      </div>
+      </PersonProvider>
     </div>
   );
 };
 
-export default withContext(PersonProvider, undefined, App);
+export default App;
