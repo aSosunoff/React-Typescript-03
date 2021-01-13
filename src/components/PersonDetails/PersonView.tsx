@@ -8,31 +8,33 @@ const PersonView: React.FC<{ person?: PersonType }> = ({ person }) => {
     return null;
   }
 
+  const { id, name, gender, birth_year, eye_color } = person;
+
   return (
     <div className={cn("card person-details", styles["person-details"])}>
       <img
         className={styles["person-image"]}
-        alt={person.id}
-        src={`https://starwars-visualguide.com/assets/img/characters/${person.id}.jpg`}
+        alt={id}
+        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
       />
 
       <div className="card-body">
-        <h4>{person.name}</h4>
+        <h4>{name}</h4>
 
         <ul className="list-group list-group-flush">
           <li className={cn("list-group-item", styles["list-group-item"])}>
             <span className={styles["term"]}>Gender</span>
-            <span>{person.gender}</span>
+            <span>{gender}</span>
           </li>
 
           <li className={cn("list-group-item", styles["list-group-item"])}>
             <span className={styles["term"]}>Birth Year</span>
-            <span>{person.birth_year}</span>
+            <span>{birth_year}</span>
           </li>
 
           <li className={cn("list-group-item", styles["list-group-item"])}>
             <span className={styles["term"]}>Eye Color</span>
-            <span>{person.eye_color}</span>
+            <span>{eye_color}</span>
           </li>
         </ul>
       </div>
