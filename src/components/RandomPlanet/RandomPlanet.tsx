@@ -9,12 +9,16 @@ import ErrorIndicator from "../ErrorIndicator";
 
 const getRundomPlanetId = () => Math.floor(Math.random() * 25) + 2;
 
-const RandomPlanet: React.FC = () => {
+type RandomPlanetType = {
+  isInterval?: boolean;
+};
+
+const RandomPlanet: React.FC<RandomPlanetType> = ({ isInterval = true }) => {
   const [idPlanet, setIdPlanet] = useState(getRundomPlanetId());
 
   const updatePlanet = useCallback(() => setIdPlanet(getRundomPlanetId()), []);
 
-  useInterval(updatePlanet, 4000);
+  useInterval(() => isInterval && updatePlanet(), 4000);
 
   const { data, loading, error } = usePlanet(idPlanet);
 

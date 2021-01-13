@@ -9,13 +9,29 @@ import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
 
 const App: React.FC = () => {
   const [showRandomPlanet, setShowRandomPlanet] = useState(true);
+  const [isRandom, setRandom] = useState(false);
 
   return (
     <ErrorBoundaryIndicator>
       <div className={cn("container", styles["stardb-app"])}>
         <Header />
 
-        {showRandomPlanet ? <RandomPlanet /> : null}
+        {showRandomPlanet ? <RandomPlanet isInterval={isRandom} /> : null}
+
+        <div className={cn("row mb2", styles["button-row"])}>
+          <div className="custom-control custom-switch">
+            <input
+              type="checkbox"
+              className="custom-control-input"
+              id="customSwitch1"
+              checked={isRandom}
+              onChange={() => setRandom((prev) => !prev)}
+            />
+            <label className="custom-control-label" htmlFor="customSwitch1">
+              Toggle random
+            </label>
+          </div>
+        </div>
 
         <div className={cn("row mb2", styles["button-row"])}>
           <button
@@ -24,6 +40,7 @@ const App: React.FC = () => {
           >
             Toggle Random Planet
           </button>
+
           <ErrorButton />
         </div>
 
