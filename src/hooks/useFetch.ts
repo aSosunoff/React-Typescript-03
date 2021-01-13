@@ -1,14 +1,14 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 type UseFetchType<T> = {
-    data: T,
+    data?: T,
     loading: boolean,
     error: any
 };
 
 export const useFetch = <T = {}>(url: string): UseFetchType<T> => {
     const initialState = useMemo<UseFetchType<T>>(() => ({
-        data: {} as T,
+        data: undefined,
         error: null,
         loading: true
     }), []);
@@ -23,7 +23,7 @@ export const useFetch = <T = {}>(url: string): UseFetchType<T> => {
 
     const setError = useCallback((error) => setDataState(() => ({
         error,
-        data: {} as T,
+        data: undefined,
         loading: false,
     })), []);
 
