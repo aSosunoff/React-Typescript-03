@@ -1,10 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-
-type UseFetchType<T> = {
-    data?: T,
-    loading: boolean,
-    error: any
-};
+import { UseFetchType } from "../types/UseFetchType";
 
 export const useFetch = <T = {}>(url: string): UseFetchType<T> => {
     const initialState = useMemo<UseFetchType<T>>(() => ({

@@ -4,12 +4,10 @@ import styles from "./ItemList.module.scss";
 import { useAllPeople } from "../../utils/SwapiService";
 import Spinner from "../Spinner";
 import { usePersonContext } from "../../context/personContext";
+import Item from "./Item";
 
 const ItemList: React.FC = () => {
-  const {
-    data: { results = [] },
-    loading,
-  } = useAllPeople();
+  const { data: { results = [] } = {}, loading } = useAllPeople();
 
   const { setIdPerson } = usePersonContext();
 
@@ -18,15 +16,7 @@ const ItemList: React.FC = () => {
       {loading ? (
         <Spinner />
       ) : (
-        results.map(({ id, name }) => (
-          <li
-            key={id}
-            className={cn("list-group-item", styles["list-group-item"])}
-            onClick={() => setIdPerson(id)}
-          >
-            {name}
-          </li>
-        ))
+        results.map((item) => <Item item={item} setIdPerson={setIdPerson} />)
       )}
     </ul>
   );

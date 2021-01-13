@@ -1,12 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
-import { PersonType } from "../types/PersonType";
+import { PersonContextFilterType } from "../types/PersonContextFilterType";
 import { usePerson } from "../utils/SwapiService";
-
-type PersonContextFilterType = {
-  person?: PersonType;
-  setIdPerson: (id: string) => void;
-  loading: boolean;
-};
 
 const PersonContext = createContext<PersonContextFilterType>(
   {} as PersonContextFilterType

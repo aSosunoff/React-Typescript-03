@@ -22,15 +22,12 @@ const getIdFromUrl = (url: string) => {
 export const useAllPeople = () => {
     const dataState = useFetch<PeopleType>(`${API_BASE}/${ApiResource.People}/`)
 
-    const people = dataState.data?.results.map((people) => ({ ...people, id: getIdFromUrl(people.url) }));
-
-    return {
-        ...dataState,
-        data: {
-            ...dataState.data,
-            results: people
-        }
+    if (dataState.data?.results) {
+        dataState.data.results = dataState
+            .data
+            .results.map((people) => ({ ...people, id: getIdFromUrl(people.url) }));
     }
+    return dataState
 };
 
 export const usePerson = (id: string) => {
