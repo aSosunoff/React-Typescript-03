@@ -7,7 +7,7 @@ import Spinner from "../Spinner";
 import PlanetView from "./PlanetView";
 import ErrorIndicator from "../ErrorIndicator";
 
-const getRundomPlanetId = () => Math.floor(Math.random() * 25) + 2;
+const getRundomPlanetId = () => `${Math.floor(Math.random() * 25) + 2}`;
 
 type RandomPlanetType = {
   isInterval?: boolean;

@@ -1,3 +1,5 @@
+import { IdType } from "./IdType";
+
 export type PlanetType = {
     climate: string,
     created: string,
@@ -13,4 +15,4 @@ export type PlanetType = {
     surface_water: string,
     terrain: string,
     url: string,
-}
+} & IdType;

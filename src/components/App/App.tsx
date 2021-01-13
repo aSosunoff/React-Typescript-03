@@ -7,6 +7,7 @@ import ErrorButton from "../ErrorButton";
 import PeoplePage from "../PeoplePage";
 import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
 import { withComponent } from "../../HOC/withComponent";
+import PlanetPage from "../PlanetPage";
 
 const App: React.FC = () => {
   const [showRandomPlanet, setShowRandomPlanet] = useState(true);
@@ -45,6 +46,8 @@ const App: React.FC = () => {
       </div>
 
       <PeoplePage />
+
+      <PlanetPage />
     </div>
   );
 };

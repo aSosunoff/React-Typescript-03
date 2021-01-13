@@ -5,7 +5,7 @@ import styles from "./RandomPlanet.module.scss";
 
 const PlanetView: React.FC<{
   planet?: PlanetType;
-  idPlanet: number;
+  idPlanet: string;
 }> = ({
   planet: { name, population, rotation_period, diameter } = {},
   idPlanet,

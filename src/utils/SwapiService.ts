@@ -25,7 +25,7 @@ export const useAllPeople = () => {
     if (dataState.data?.results) {
         dataState.data.results = dataState
             .data
-            .results.map((people) => ({ ...people, id: getIdFromUrl(people.url) }));
+            .results.map((items) => ({ ...items, id: getIdFromUrl(items.url) }));
     }
     return dataState
 };
@@ -40,11 +40,26 @@ export const usePerson = (id: string) => {
     return dataState
 };
 
-export const useAllPlanet = () =>
-    useFetch<PlanetsType>(`${API_BASE}/${ApiResource.Planets}/`);
+export const useAllPlanet = () => {
+    const dataState = useFetch<PlanetsType>(`${API_BASE}/${ApiResource.Planets}/`);
 
-export const usePlanet = (id: number) =>
-    useFetch<PlanetType>(`${API_BASE}/${ApiResource.Planets}/${id}`);
+    if (dataState.data?.results) {
+        dataState.data.results = dataState
+            .data
+            .results.map((items) => ({ ...items, id: getIdFromUrl(items.url) }));
+    }
+    return dataState
+};
+
+export const usePlanet = (id: string) => {
+    const dataState = useFetch<PlanetType>(`${API_BASE}/${ApiResource.Planets}/${id}`)
+
+    if (dataState?.data) {
+        dataState.data.id = getIdFromUrl(dataState?.data?.url || '');
+    }
+
+    return dataState
+};
 
 export const useAllStarships = () =>
     useFetch<StarshipsType>(`${API_BASE}/${ApiResource.Starships}/`);
