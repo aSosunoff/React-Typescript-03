@@ -16,7 +16,9 @@ const ItemList: React.FC = () => {
       {loading ? (
         <Spinner />
       ) : (
-        results.map((item) => <Item item={item} setIdPerson={setIdPerson} />)
+        results.map((item) => (
+          <Item key={item.id} item={item} setIdPerson={setIdPerson} />
+        ))
       )}
     </ul>
   );
