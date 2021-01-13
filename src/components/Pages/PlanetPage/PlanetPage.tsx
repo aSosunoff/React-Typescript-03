@@ -5,7 +5,7 @@ import { useAllPlanet, usePlanet } from "../../../utils/SwapiService";
 import Page from "../Page";
 import ItemList from "../../ItemList";
 import { PlanetType } from "../../../types/PlanetType";
-import PlanetDetails from "../../PlanetDetails";
+import PlanetDetails from "../../Details/PlanetDetails";
 
 const PlanetPage: React.FC = () => {
   const [id, setId] = useState("0");
