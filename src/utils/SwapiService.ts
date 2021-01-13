@@ -14,13 +14,15 @@ enum ApiResource {
     Starships = 'starships',
 }
 
+const getIdFromUrl = (url: string) => {
+    const match = url.match(/\/(?<ID>[0-9]+)\/$/);
+    return match?.groups?.ID || '0';
+};
+
 export const useAllPeople = () => {
     const dataState = useFetch<PeopleType>(`${API_BASE}/${ApiResource.People}/`)
 
-    const people = dataState.data?.results.map((people) => {
-        const match = people.url.match(/\/(?<ID>[0-9]+)\/$/);
-        return { ...people, id: match?.groups?.ID || '0' };
-    });
+    const people = dataState.data?.results.map((people) => ({ ...people, id: getIdFromUrl(people.url) }));
 
     return {
         ...dataState,
@@ -31,8 +33,15 @@ export const useAllPeople = () => {
     }
 };
 
-export const usePerson = (id: number) =>
-    useFetch<PersonType>(`${API_BASE}/${ApiResource.People}/${id}`);
+export const usePerson = (id: string) => {
+    const dataState = useFetch<PersonType>(`${API_BASE}/${ApiResource.People}/${id}`);
+
+    if (dataState?.data) {
+        dataState.data.id = getIdFromUrl(dataState?.data?.url || '');
+    }
+
+    return dataState
+};
 
 export const useAllPlanet = () =>
     useFetch<PlanetsType>(`${API_BASE}/${ApiResource.Planets}/`);

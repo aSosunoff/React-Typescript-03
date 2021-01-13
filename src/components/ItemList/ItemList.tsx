@@ -1,8 +1,9 @@
-import React, { useCallback } from "react";
+import React from "react";
 import cn from "classnames";
 import styles from "./ItemList.module.scss";
 import { useAllPeople } from "../../utils/SwapiService";
 import Spinner from "../Spinner";
+import { usePersonContext } from "../../context/personContext";
 
 const ItemList: React.FC = () => {
   const {
@@ -10,9 +11,7 @@ const ItemList: React.FC = () => {
     loading,
   } = useAllPeople();
 
-  const setPerson = useCallback((id: string) => {
-    console.log(id);
-  }, []);
+  const { setIdPerson } = usePersonContext();
 
   return (
     <ul className={cn("list-group", styles["item-list"])}>
@@ -23,7 +22,7 @@ const ItemList: React.FC = () => {
           <li
             key={id}
             className={cn("list-group-item", styles["list-group-item"])}
-            onClick={() => setPerson(id)}
+            onClick={() => setIdPerson(id)}
           >
             {name}
           </li>

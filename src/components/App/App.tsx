@@ -3,6 +3,8 @@ import Header from "../Header";
 import RandomPlanet from "../RandomPlanet";
 import ItemList from "../ItemList";
 import PersonDetails from "../PersonDetails";
+import { withContext } from "../../HOC/withContext";
+import { PersonProvider } from "../../context/personContext";
 
 const App: React.FC = () => {
   return (
@@ -22,4 +24,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default withContext(PersonProvider, undefined, App);
