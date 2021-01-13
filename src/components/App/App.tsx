@@ -7,6 +7,7 @@ import PersonDetails from "../PersonDetails";
 import { withContext } from "../../HOC/withContext";
 import { PersonProvider } from "../../context/personContext";
 import styles from "./App.module.scss";
+import ErrorButton from "../ErrorButton";
 
 const App: React.FC = () => {
   const [showRandomPlanet, setShowRandomPlanet] = useState(true);
@@ -29,6 +30,7 @@ const App: React.FC = () => {
         >
           Toggle Random Planet
         </button>
+        <ErrorButton />
       </div>
 
       <div className="row mb2">
