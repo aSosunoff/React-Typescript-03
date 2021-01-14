@@ -6,8 +6,9 @@ import { useAllPeople, usePerson } from "../../../utils/SwapiService";
 import PersonDetails from "../../Details/PersonDetails/PersonDetails";
 import Page from "../Page";
 import ItemList from "../../ItemList";
+import { BasePageType } from "../../../types/BasePageType";
 
-const PeoplePage: React.FC = () => {
+const PeoplePage: React.FC<BasePageType> = ({ className, style }) => {
   const [idPerson, setIdPerson] = useState("0");
 
   const { data, loading: showSpinnerDetails } = usePerson(idPerson);
@@ -19,6 +20,8 @@ const PeoplePage: React.FC = () => {
 
   return (
     <Page
+      className={className}
+      style={style}
       showSpinnerDetails={showSpinnerDetails}
       renderItems={() => (
         <ItemList<PersonType>

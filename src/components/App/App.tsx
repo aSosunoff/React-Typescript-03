@@ -34,7 +34,7 @@ const App: React.FC = () => {
         </div>
       </div>
 
-      <div className={cn("row mb2", styles["button-row"])}>
+      <div className={cn("row mb2", styles["button-row"], styles["row"])}>
         <button
           className="toggle-planet btn btn-warning btn-lg"
           onClick={() => setShowRandomPlanet((prev) => !prev)}
@@ -45,9 +45,9 @@ const App: React.FC = () => {
         <ErrorButton />
       </div>
 
-      <PeoplePage />
+      <PeoplePage className={styles["row"]} />
 
-      <PlanetPage />
+      <PlanetPage className={styles["row"]} />
     </div>
   );
 };
