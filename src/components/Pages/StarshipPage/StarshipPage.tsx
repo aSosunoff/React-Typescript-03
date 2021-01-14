@@ -6,8 +6,7 @@ import Row from "../../Row";
 import ItemList from "../../ItemList";
 import { BasePageType } from "../../../types/BasePageType";
 import { StarshipType } from "../../../types/StarshipType";
-import Details from "../../Details/Details";
-import { Record } from "../../Details/Details/Details";
+import Details, { Record } from "../../Details";
 
 const StarshipPage: React.FC<BasePageType> = ({ className, style }) => {
   const [id, setId] = useState("0");

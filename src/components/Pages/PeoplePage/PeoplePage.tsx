@@ -3,7 +3,7 @@ import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
 import { withComponent } from "../../../HOC/withComponent";
 import { PersonType } from "../../../types/PersonType";
 import { useAllPeople, usePerson } from "../../../utils/SwapiService";
-import Details, { Record } from "../../Details/Details/Details";
+import Details, { Record } from "../../Details";
 import Row from "../../Row";
 import ItemList from "../../ItemList";
 import { BasePageType } from "../../../types/BasePageType";

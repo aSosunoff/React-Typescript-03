@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames";
 import styles from "./Details.module.scss";
-import ErrorButton from "../../ErrorButton";
+import ErrorButton from "../ErrorButton";
 
 type RecordType = {
   title: string;
