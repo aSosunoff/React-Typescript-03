@@ -1,3 +1,4 @@
+import { ISwapiService } from "../Interfaces/ISwapiService";
 import { PeopleType } from "../types/PeopleType";
 import { PersonType } from "../types/PersonType";
 import { PlanetsType } from "../types/PlanetsType";
@@ -14,18 +15,7 @@ enum ApiResource {
 
 const API_BASE = 'https://swapi.dev/api';
 
-interface ISwapiService {
-    getAllPeople(): Promise<PeopleType>,
-    getPerson(id: string): Promise<PersonType>,
-
-    getAllPlanet(): Promise<PlanetsType>,
-    getPlanet(id: string): Promise<PlanetType>,
-
-    getAllStarships(): Promise<StarshipsType>,
-    getStarship(id: string): Promise<StarshipType>,
-}
-
-class SwapiService implements ISwapiService {
+export class SwapiService implements ISwapiService {
     static getIdFromUrl(url: string) {
         const match = url.match(/\/(?<ID>[0-9]+)\/$/);
         return match?.groups?.ID || '0';
@@ -80,5 +70,3 @@ class SwapiService implements ISwapiService {
         return data ? SwapiService.parseId(data) : data;
     };
 }
-
-export const Service = new SwapiService();

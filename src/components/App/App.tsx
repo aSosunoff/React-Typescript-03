@@ -9,6 +9,8 @@ import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
 import { withComponentAsHOC } from "../../HOC/withComponentAsHOC";
 import PlanetPage from "../Pages/PlanetPage";
 import StarshipPage from "../Pages/StarshipPage";
+import { Compose } from "../../utils/Compose";
+import { SwapiServiceProvider } from "../../context/SwapiServiceContext";
 
 const App: React.FC = () => {
   const [showRandomPlanet, setShowRandomPlanet] = useState(true);
@@ -55,4 +57,7 @@ const App: React.FC = () => {
   );
 };
 
-export default withComponentAsHOC(ErrorBoundaryIndicator, {})(App);
+export default Compose(
+  withComponentAsHOC(ErrorBoundaryIndicator, {}),
+  withComponentAsHOC(SwapiServiceProvider, {})
+)(App);
