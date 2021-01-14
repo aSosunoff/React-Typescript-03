@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
 import { withComponent } from "../../../HOC/withComponent";
 import { useAllPlanet, usePlanet } from "../../../utils/SwapiService";
-import Page from "../../Row";
+import Row from "../../Row";
 import ItemList from "../../ItemList";
 import { PlanetType } from "../../../types/PlanetType";
-import PlanetDetails from "../../Details/PlanetDetails";
 import { BasePageType } from "../../../types/BasePageType";
+import Details from "../../Details/Details";
+import { Record } from "../../Details/Details/Details";
 
 const PlanetPage: React.FC<BasePageType> = ({ className, style }) => {
   const [id, setId] = useState("0");
@@ -19,7 +20,7 @@ const PlanetPage: React.FC<BasePageType> = ({ className, style }) => {
   } = useAllPlanet();
 
   return (
-    <Page
+    <Row
       className={className}
       style={style}
       spinnerLeft={showSpinnerList}
@@ -31,7 +32,17 @@ const PlanetPage: React.FC<BasePageType> = ({ className, style }) => {
         />
       )}
       spinnerRight={showSpinnerDetails}
-      renderRight={() => <PlanetDetails />}
+      renderRight={() =>
+        data && (
+          <Details
+            title={data?.name || ""}
+            imgUrl={`https://starwars-visualguide.com/assets/img/planets/${data.id}.jpg`}
+          >
+            <Record title="Diameter" text={data.diameter} />
+            <Record title="Orbital Period" text={data.orbital_period} />
+          </Details>
+        )
+      }
     />
   );
 };

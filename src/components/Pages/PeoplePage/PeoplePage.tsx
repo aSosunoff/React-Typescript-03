@@ -3,8 +3,8 @@ import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
 import { withComponent } from "../../../HOC/withComponent";
 import { PersonType } from "../../../types/PersonType";
 import { useAllPeople, usePerson } from "../../../utils/SwapiService";
-import PersonDetails from "../../Details/PersonDetails/PersonDetails";
-import Page from "../../Row";
+import Details, { Record } from "../../Details/Details/Details";
+import Row from "../../Row";
 import ItemList from "../../ItemList";
 import { BasePageType } from "../../../types/BasePageType";
 
@@ -19,7 +19,7 @@ const PeoplePage: React.FC<BasePageType> = ({ className, style }) => {
   } = useAllPeople();
 
   return (
-    <Page
+    <Row
       className={className}
       style={style}
       spinnerLeft={showSpinnerList}
@@ -33,7 +33,18 @@ const PeoplePage: React.FC<BasePageType> = ({ className, style }) => {
         />
       )}
       spinnerRight={showSpinnerDetails}
-      renderRight={() => <PersonDetails person={data} />}
+      renderRight={() =>
+        data && (
+          <Details
+            title={data?.name || ""}
+            imgUrl={`https://starwars-visualguide.com/assets/img/characters/${data.id}.jpg`}
+          >
+            <Record title="Gender" text={data.gender} />
+            <Record title="Birth Year" text={data.birth_year} />
+            <Record title="Eye Color" text={data.eye_color} />
+          </Details>
+        )
+      }
     />
   );
 };

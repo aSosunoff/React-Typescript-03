@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
 import { withComponent } from "../../../HOC/withComponent";
 import { useAllStarships, useStarships } from "../../../utils/SwapiService";
-import Page from "../../Row";
+import Row from "../../Row";
 import ItemList from "../../ItemList";
 import { BasePageType } from "../../../types/BasePageType";
 import { StarshipType } from "../../../types/StarshipType";
-import StarshipDetails from "../../Details/StarshipDetails";
+import Details from "../../Details/Details";
+import { Record } from "../../Details/Details/Details";
 
 const StarshipPage: React.FC<BasePageType> = ({ className, style }) => {
   const [id, setId] = useState("0");
@@ -19,7 +20,7 @@ const StarshipPage: React.FC<BasePageType> = ({ className, style }) => {
   } = useAllStarships();
 
   return (
-    <Page
+    <Row
       className={className}
       style={style}
       spinnerLeft={showSpinnerList}
@@ -31,7 +32,18 @@ const StarshipPage: React.FC<BasePageType> = ({ className, style }) => {
         />
       )}
       spinnerRight={showSpinnerDetails}
-      renderRight={() => <StarshipDetails />}
+      renderRight={() =>
+        data && (
+          <Details
+            title={data?.name || ""}
+            imgUrl={`https://starwars-visualguide.com/assets/img/starships/${data.id}.jpg`}
+          >
+            <Record title="Model" text={data.model} />
+            <Record title="Length" text={data.length} />
+            <Record title="Cost" text={data.cost_in_credits} />
+          </Details>
+        )
+      }
     />
   );
 };
