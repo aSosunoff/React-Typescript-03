@@ -10,11 +10,10 @@ import {
 import { Compose } from "../../../utils/Compose";
 import { SetIdProvider } from "../../../context/SetIdContext";
 
-const StarshipPage: React.FC<BasePageType> = ({ className, style }) => {
+const StarshipPage: React.FC<BasePageType> = (props) => {
   return (
     <Row
-      className={className}
-      style={style}
+      {...props}
       renderLeft={() => <StarshipList />}
       renderRight={() => <StarshipDetails />}
     />

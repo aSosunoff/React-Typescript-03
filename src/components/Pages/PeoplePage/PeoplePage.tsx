@@ -7,11 +7,10 @@ import { PeopleDetails, PeopleList } from "../../StarComponents/StarComponents";
 import { Compose } from "../../../utils/Compose";
 import { SetIdProvider } from "../../../context/SetIdContext";
 
-const PeoplePage: React.FC<BasePageType> = ({ className, style }) => {
+const PeoplePage: React.FC<BasePageType> = (props) => {
   return (
     <Row
-      className={className}
-      style={style}
+      {...props}
       renderLeft={() => <PeopleList />}
       renderRight={() => <PeopleDetails />}
     />

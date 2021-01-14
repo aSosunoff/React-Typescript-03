@@ -7,11 +7,10 @@ import { PlanetDetails, PlanetList } from "../../StarComponents/StarComponents";
 import { Compose } from "../../../utils/Compose";
 import { SetIdProvider } from "../../../context/SetIdContext";
 
-const PlanetPage: React.FC<BasePageType> = ({ className, style }) => {
+const PlanetPage: React.FC<BasePageType> = (props) => {
   return (
     <Row
-      className={className}
-      style={style}
+      {...props}
       renderLeft={() => <PlanetList />}
       renderRight={() => <PlanetDetails />}
     />
