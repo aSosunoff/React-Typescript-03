@@ -14,10 +14,10 @@ const Row: React.FC<RowType> = ({
   className,
   style,
 }) => {
-  const _renderLeft = renderLeft();
-  const Left = _renderLeft !== null ? _renderLeft : <Spinner />;
-  const _renderRight = renderRight();
-  const Right = _renderRight !== null ? _renderRight : <Spinner />;
+  const _renderLeft = renderLeft() || null;
+  const Left = _renderLeft !== true ? _renderLeft : <Spinner />;
+  const _renderRight = renderRight() || null;
+  const Right = _renderRight !== true ? _renderRight : <Spinner />;
   return (
     <div style={style} className={cn("row mb2", className)}>
       <div className="col-md-6">{Left}</div>

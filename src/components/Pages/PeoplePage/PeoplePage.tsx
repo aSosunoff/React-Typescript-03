@@ -23,7 +23,7 @@ const PeoplePage: React.FC<BasePageType> = ({ className, style }) => {
       className={className}
       style={style}
       renderLeft={() =>
-        showSpinnerList ? null : (
+        showSpinnerList || (
           <ItemList<PersonType>
             list={results}
             setId={setIdPerson}
@@ -34,18 +34,17 @@ const PeoplePage: React.FC<BasePageType> = ({ className, style }) => {
         )
       }
       renderRight={() =>
-        showSpinnerDetails
-          ? null
-          : data && (
-              <Details
-                title={data?.name || ""}
-                imgUrl={`https://starwars-visualguide.com/assets/img/characters/${data.id}.jpg`}
-              >
-                <Record title="Gender" text={data.gender} />
-                <Record title="Birth Year" text={data.birth_year} />
-                <Record title="Eye Color" text={data.eye_color} />
-              </Details>
-            )
+        showSpinnerDetails ||
+        (data && (
+          <Details
+            title={data?.name || ""}
+            imgUrl={`https://starwars-visualguide.com/assets/img/characters/${data.id}.jpg`}
+          >
+            <Record title="Gender" text={data.gender} />
+            <Record title="Birth Year" text={data.birth_year} />
+            <Record title="Eye Color" text={data.eye_color} />
+          </Details>
+        ))
       }
     />
   );
