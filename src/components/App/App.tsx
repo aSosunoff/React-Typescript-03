@@ -6,7 +6,7 @@ import styles from "./App.module.scss";
 import ErrorButton from "../ErrorButton";
 import PeoplePage from "../Pages/PeoplePage";
 import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
-import { withComponent } from "../../HOC/withComponent";
+import { withComponentAsHOC } from "../../HOC/withComponentAsHOC";
 import PlanetPage from "../Pages/PlanetPage";
 import StarshipPage from "../Pages/StarshipPage";
 
@@ -55,4 +55,4 @@ const App: React.FC = () => {
   );
 };
 
-export default withComponent(ErrorBoundaryIndicator)(App);
+export default withComponentAsHOC(ErrorBoundaryIndicator, {})(App);

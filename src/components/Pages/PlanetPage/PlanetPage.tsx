@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
-import { withComponent } from "../../../HOC/withComponent";
+import { withComponentAsHOC } from "../../../HOC/withComponentAsHOC";
 import Row from "../../Row";
 import { BasePageType } from "../../../types/BasePageType";
 import { PlanetDetails, PlanetList } from "../../StarComponents/StarComponents";
@@ -18,4 +18,4 @@ const PlanetPage: React.FC<BasePageType> = ({ className, style }) => {
   );
 };
 
-export default withComponent(ErrorBoundaryIndicator)(PlanetPage);
+export default withComponentAsHOC(ErrorBoundaryIndicator, {})(PlanetPage);
