@@ -7,7 +7,6 @@ import ItemList from "../../ItemList";
 import { BasePageType } from "../../../types/BasePageType";
 import { StarshipType } from "../../../types/StarshipType";
 import StarshipDetails from "../../Details/StarshipDetails";
-import Spinner from "../../Spinner";
 
 const StarshipPage: React.FC<BasePageType> = ({ className, style }) => {
   const [id, setId] = useState("0");
@@ -23,17 +22,16 @@ const StarshipPage: React.FC<BasePageType> = ({ className, style }) => {
     <Page
       className={className}
       style={style}
+      spinnerLeft={showSpinnerList}
       renderLeft={() => (
         <ItemList<StarshipType>
           list={results}
-          showSpinner={showSpinnerList}
           setId={setId}
           renderTitle={({ name }) => `${name}`}
         />
       )}
-      renderRight={() =>
-        showSpinnerDetails ? <Spinner /> : <StarshipDetails />
-      }
+      spinnerRight={showSpinnerDetails}
+      renderRight={() => <StarshipDetails />}
     />
   );
 };

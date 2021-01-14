@@ -7,7 +7,6 @@ import ItemList from "../../ItemList";
 import { PlanetType } from "../../../types/PlanetType";
 import PlanetDetails from "../../Details/PlanetDetails";
 import { BasePageType } from "../../../types/BasePageType";
-import Spinner from "../../Spinner";
 
 const PlanetPage: React.FC<BasePageType> = ({ className, style }) => {
   const [id, setId] = useState("0");
@@ -23,17 +22,16 @@ const PlanetPage: React.FC<BasePageType> = ({ className, style }) => {
     <Page
       className={className}
       style={style}
+      spinnerLeft={showSpinnerList}
       renderLeft={() => (
         <ItemList<PlanetType>
           list={results}
-          showSpinner={showSpinnerList}
           setId={setId}
           renderTitle={({ name }) => `${name}`}
         />
       )}
-      renderRight={() =>
-        showSpinnerDetails ? <Spinner /> : <PlanetDetails />
-      }
+      spinnerRight={showSpinnerDetails}
+      renderRight={() => <PlanetDetails />}
     />
   );
 };

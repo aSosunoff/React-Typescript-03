@@ -7,7 +7,6 @@ import PersonDetails from "../../Details/PersonDetails/PersonDetails";
 import Page from "../../Row";
 import ItemList from "../../ItemList";
 import { BasePageType } from "../../../types/BasePageType";
-import Spinner from "../../Spinner";
 
 const PeoplePage: React.FC<BasePageType> = ({ className, style }) => {
   const [idPerson, setIdPerson] = useState("0");
@@ -23,19 +22,18 @@ const PeoplePage: React.FC<BasePageType> = ({ className, style }) => {
     <Page
       className={className}
       style={style}
+      spinnerLeft={showSpinnerList}
       renderLeft={() => (
         <ItemList<PersonType>
           list={results}
-          showSpinner={showSpinnerList}
           setId={setIdPerson}
           renderTitle={({ name, gender, birth_year }) =>
             `${name} (${gender}), ${birth_year}`
           }
         />
       )}
-      renderRight={() =>
-        showSpinnerDetails ? <Spinner /> : <PersonDetails person={data} />
-      }
+      spinnerRight={showSpinnerDetails}
+      renderRight={() => <PersonDetails person={data} />}
     />
   );
 };
