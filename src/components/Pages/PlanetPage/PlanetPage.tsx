@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
 import { withComponentAsHOC } from "../../../HOC/withComponentAsHOC";
 import Row from "../../Row";
 import { BasePageType } from "../../../types/BasePageType";
 import { PlanetDetails, PlanetList } from "../../StarComponents/StarComponents";
+import { Compose } from "../../../utils/Compose";
+import { SetIdProvider } from "../../../context/SetIdContext";
 
 const PlanetPage: React.FC<BasePageType> = ({ className, style }) => {
-  const [id, setId] = useState("0");
-
   return (
     <Row
       className={className}
       style={style}
-      renderLeft={() => <PlanetList setId={setId} />}
-      renderRight={() => <PlanetDetails id={id} />}
+      renderLeft={() => <PlanetList />}
+      renderRight={() => <PlanetDetails />}
     />
   );
 };
 
-export default withComponentAsHOC(ErrorBoundaryIndicator, {})(PlanetPage);
+export default Compose(
+  withComponentAsHOC(ErrorBoundaryIndicator, {}),
+  withComponentAsHOC(SetIdProvider, {})
+)(PlanetPage);

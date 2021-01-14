@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { IdType } from "../../types/IdType";
+import { useSetIdContext } from "../../context/SetIdContext";
 import { PersonType } from "../../types/PersonType";
 import { PlanetType } from "../../types/PlanetType";
 import { StarshipType } from "../../types/StarshipType";
@@ -15,12 +15,10 @@ import Details, { Record } from "../Details";
 import ItemList from "../ItemList";
 import Spinner from "../Spinner";
 
-type SetIdType = {
-  setId: (id: string) => void;
-};
-
-export const PeopleList: React.FC<SetIdType> = ({ setId }) => {
+export const PeopleList: React.FC = () => {
   const { data: { results = [] } = {}, loading } = useAllPeople();
+
+  const { setId } = useSetIdContext();
 
   return loading ? (
     <Spinner />
@@ -35,8 +33,10 @@ export const PeopleList: React.FC<SetIdType> = ({ setId }) => {
   );
 };
 
-export const PlanetList: React.FC<SetIdType> = ({ setId }) => {
+export const PlanetList: React.FC = () => {
   const { data: { results = [] } = {}, loading } = useAllPlanet();
+
+  const { setId } = useSetIdContext();
 
   return loading ? (
     <Spinner />
@@ -49,8 +49,10 @@ export const PlanetList: React.FC<SetIdType> = ({ setId }) => {
   );
 };
 
-export const StarshipList: React.FC<SetIdType> = ({ setId }) => {
+export const StarshipList: React.FC = () => {
   const { data: { results = [] } = {}, loading } = useAllStarships();
+
+  const { setId } = useSetIdContext();
 
   return loading ? (
     <Spinner />
@@ -63,7 +65,9 @@ export const StarshipList: React.FC<SetIdType> = ({ setId }) => {
   );
 };
 
-export const PeopleDetails: React.FC<IdType> = ({ id }) => {
+export const PeopleDetails: React.FC = () => {
+  const { id } = useSetIdContext();
+
   const { data, loading } = usePerson(id);
 
   const DetailsComponent = useMemo(
@@ -84,7 +88,9 @@ export const PeopleDetails: React.FC<IdType> = ({ id }) => {
   return loading ? <Spinner /> : DetailsComponent;
 };
 
-export const PlanetDetails: React.FC<IdType> = ({ id }) => {
+export const PlanetDetails: React.FC = () => {
+  const { id } = useSetIdContext();
+
   const { data, loading } = usePlanet(id);
 
   const DetailsComponent = useMemo(
@@ -104,7 +110,9 @@ export const PlanetDetails: React.FC<IdType> = ({ id }) => {
   return loading ? <Spinner /> : DetailsComponent;
 };
 
-export const StarshipDetails: React.FC<IdType> = ({ id }) => {
+export const StarshipDetails: React.FC = () => {
+  const { id } = useSetIdContext();
+
   const { data, loading } = useStarships(id);
 
   const DetailsComponent = useMemo(
