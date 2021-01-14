@@ -22,25 +22,27 @@ const PlanetPage: React.FC<BasePageType> = ({ className, style }) => {
     <Row
       className={className}
       style={style}
-      spinnerLeft={showSpinnerList}
-      renderLeft={() => (
-        <ItemList<PlanetType>
-          list={results}
-          setId={setId}
-          renderTitle={({ name }) => `${name}`}
-        />
-      )}
-      spinnerRight={showSpinnerDetails}
-      renderRight={() =>
-        data && (
-          <Details
-            title={data?.name || ""}
-            imgUrl={`https://starwars-visualguide.com/assets/img/planets/${data.id}.jpg`}
-          >
-            <Record title="Diameter" text={data.diameter} />
-            <Record title="Orbital Period" text={data.orbital_period} />
-          </Details>
+      renderLeft={() =>
+        showSpinnerList ? null : (
+          <ItemList<PlanetType>
+            list={results}
+            setId={setId}
+            renderTitle={({ name }) => `${name}`}
+          />
         )
+      }
+      renderRight={() =>
+        showSpinnerDetails
+          ? null
+          : data && (
+              <Details
+                title={data?.name || ""}
+                imgUrl={`https://starwars-visualguide.com/assets/img/planets/${data.id}.jpg`}
+              >
+                <Record title="Diameter" text={data.diameter} />
+                <Record title="Orbital Period" text={data.orbital_period} />
+              </Details>
+            )
       }
     />
   );

@@ -22,26 +22,28 @@ const StarshipPage: React.FC<BasePageType> = ({ className, style }) => {
     <Row
       className={className}
       style={style}
-      spinnerLeft={showSpinnerList}
-      renderLeft={() => (
-        <ItemList<StarshipType>
-          list={results}
-          setId={setId}
-          renderTitle={({ name }) => `${name}`}
-        />
-      )}
-      spinnerRight={showSpinnerDetails}
-      renderRight={() =>
-        data && (
-          <Details
-            title={data?.name || ""}
-            imgUrl={`https://starwars-visualguide.com/assets/img/starships/${data.id}.jpg`}
-          >
-            <Record title="Model" text={data.model} />
-            <Record title="Length" text={data.length} />
-            <Record title="Cost" text={data.cost_in_credits} />
-          </Details>
+      renderLeft={() =>
+        showSpinnerList ? null : (
+          <ItemList<StarshipType>
+            list={results}
+            setId={setId}
+            renderTitle={({ name }) => `${name}`}
+          />
         )
+      }
+      renderRight={() =>
+        showSpinnerDetails
+          ? null
+          : data && (
+              <Details
+                title={data?.name || ""}
+                imgUrl={`https://starwars-visualguide.com/assets/img/starships/${data.id}.jpg`}
+              >
+                <Record title="Model" text={data.model} />
+                <Record title="Length" text={data.length} />
+                <Record title="Cost" text={data.cost_in_credits} />
+              </Details>
+            )
       }
     />
   );
