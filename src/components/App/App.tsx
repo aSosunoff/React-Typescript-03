@@ -8,6 +8,7 @@ import PeoplePage from "../Pages/PeoplePage";
 import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
 import { withComponent } from "../../HOC/withComponent";
 import PlanetPage from "../Pages/PlanetPage";
+import StarshipPage from "../Pages/StarshipPage";
 
 const App: React.FC = () => {
   const [showRandomPlanet, setShowRandomPlanet] = useState(true);
@@ -48,6 +49,8 @@ const App: React.FC = () => {
       <PeoplePage className={styles["row"]} />
 
       <PlanetPage className={styles["row"]} />
+
+      <StarshipPage className={styles["row"]} />
     </div>
   );
 };

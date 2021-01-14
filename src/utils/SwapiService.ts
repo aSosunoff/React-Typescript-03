@@ -61,8 +61,23 @@ export const usePlanet = (id: string) => {
     return dataState
 };
 
-export const useAllStarships = () =>
-    useFetch<StarshipsType>(`${API_BASE}/${ApiResource.Starships}/`);
+export const useAllStarships = () => {
+    const dataState = useFetch<StarshipsType>(`${API_BASE}/${ApiResource.Starships}/`);
 
-export const useStarships = (id: number) =>
-    useFetch<StarshipType>(`${API_BASE}/${ApiResource.Starships}/${id}`);
+    if (dataState.data?.results) {
+        dataState.data.results = dataState
+            .data
+            .results.map((items) => ({ ...items, id: getIdFromUrl(items.url) }));
+    }
+    return dataState
+};
+
+export const useStarships = (id: string) => {
+    const dataState = useFetch<StarshipType>(`${API_BASE}/${ApiResource.Starships}/${id}`)
+
+    if (dataState?.data) {
+        dataState.data.id = getIdFromUrl(dataState?.data?.url || '');
+    }
+
+    return dataState
+};

@@ -1,3 +1,5 @@
+import { IdType } from "./IdType";
+
 export type StarshipType = {
     MGLT: string,
     cargo_capacity: string,
@@ -17,4 +19,4 @@ export type StarshipType = {
     pilots: string[],
     starship_class: string,
     url: string,
-}
+} & IdType
