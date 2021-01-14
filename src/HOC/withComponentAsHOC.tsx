@@ -11,6 +11,8 @@ export const withComponentAsHOC = <TWrapper,>(
       );
     };
 
+    ComponentAsHOC.displayName = `${WrapperComponent.name}.WithComponentAsHOC`;
+
     return ComponentAsHOC;
   };
 };
