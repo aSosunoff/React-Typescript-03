@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
 import { withComponent } from "../../../HOC/withComponent";
 import { useAllStarships, useStarships } from "../../../utils/SwapiService";
-import Page from "../Page";
+import Page from "../../Row";
 import ItemList from "../../ItemList";
 import { BasePageType } from "../../../types/BasePageType";
 import { StarshipType } from "../../../types/StarshipType";
 import StarshipDetails from "../../Details/StarshipDetails";
+import Spinner from "../../Spinner";
 
 const StarshipPage: React.FC<BasePageType> = ({ className, style }) => {
   const [id, setId] = useState("0");
@@ -22,8 +23,7 @@ const StarshipPage: React.FC<BasePageType> = ({ className, style }) => {
     <Page
       className={className}
       style={style}
-      showSpinnerDetails={showSpinnerDetails}
-      renderItems={() => (
+      renderLeft={() => (
         <ItemList<StarshipType>
           list={results}
           showSpinner={showSpinnerList}
@@ -31,7 +31,9 @@ const StarshipPage: React.FC<BasePageType> = ({ className, style }) => {
           renderTitle={({ name }) => `${name}`}
         />
       )}
-      renderDetails={() => <StarshipDetails />}
+      renderRight={() =>
+        showSpinnerDetails ? <Spinner /> : <StarshipDetails />
+      }
     />
   );
 };

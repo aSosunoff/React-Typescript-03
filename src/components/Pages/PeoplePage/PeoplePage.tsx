@@ -4,9 +4,10 @@ import { withComponent } from "../../../HOC/withComponent";
 import { PersonType } from "../../../types/PersonType";
 import { useAllPeople, usePerson } from "../../../utils/SwapiService";
 import PersonDetails from "../../Details/PersonDetails/PersonDetails";
-import Page from "../Page";
+import Page from "../../Row";
 import ItemList from "../../ItemList";
 import { BasePageType } from "../../../types/BasePageType";
+import Spinner from "../../Spinner";
 
 const PeoplePage: React.FC<BasePageType> = ({ className, style }) => {
   const [idPerson, setIdPerson] = useState("0");
@@ -22,8 +23,7 @@ const PeoplePage: React.FC<BasePageType> = ({ className, style }) => {
     <Page
       className={className}
       style={style}
-      showSpinnerDetails={showSpinnerDetails}
-      renderItems={() => (
+      renderLeft={() => (
         <ItemList<PersonType>
           list={results}
           showSpinner={showSpinnerList}
@@ -33,7 +33,9 @@ const PeoplePage: React.FC<BasePageType> = ({ className, style }) => {
           }
         />
       )}
-      renderDetails={() => <PersonDetails person={data} />}
+      renderRight={() =>
+        showSpinnerDetails ? <Spinner /> : <PersonDetails person={data} />
+      }
     />
   );
 };

@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
 import { withComponent } from "../../../HOC/withComponent";
 import { useAllPlanet, usePlanet } from "../../../utils/SwapiService";
-import Page from "../Page";
+import Page from "../../Row";
 import ItemList from "../../ItemList";
 import { PlanetType } from "../../../types/PlanetType";
 import PlanetDetails from "../../Details/PlanetDetails";
 import { BasePageType } from "../../../types/BasePageType";
+import Spinner from "../../Spinner";
 
 const PlanetPage: React.FC<BasePageType> = ({ className, style }) => {
   const [id, setId] = useState("0");
@@ -22,8 +23,7 @@ const PlanetPage: React.FC<BasePageType> = ({ className, style }) => {
     <Page
       className={className}
       style={style}
-      showSpinnerDetails={showSpinnerDetails}
-      renderItems={() => (
+      renderLeft={() => (
         <ItemList<PlanetType>
           list={results}
           showSpinner={showSpinnerList}
@@ -31,7 +31,9 @@ const PlanetPage: React.FC<BasePageType> = ({ className, style }) => {
           renderTitle={({ name }) => `${name}`}
         />
       )}
-      renderDetails={() => <PlanetDetails />}
+      renderRight={() =>
+        showSpinnerDetails ? <Spinner /> : <PlanetDetails />
+      }
     />
   );
 };
