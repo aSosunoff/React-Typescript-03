@@ -1,4 +1,4 @@
 export type BasePageType = {
-    className: string;
+    className?: string;
     style?: React.CSSProperties
 };
