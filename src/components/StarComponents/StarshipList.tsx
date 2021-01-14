@@ -1,7 +1,7 @@
 import React from "react";
 import { useSetIdContext } from "../../context/SetIdContext";
 import { StarshipType } from "../../types/StarshipType";
-import { useAllStarships } from "../../utils/SwapiService";
+import { useAllStarships } from "../../hooks/useSwapiService";
 import ItemList from "../ItemList";
 import Spinner from "../Spinner";
 

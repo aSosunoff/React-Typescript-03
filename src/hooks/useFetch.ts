@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { UseFetchType } from "../types/UseFetchType";
 
-export const useFetch = <T = {}>(url: string): UseFetchType<T> => {
+export const useFetch = <T>(callback: () => Promise<T>): UseFetchType<T> => {
     const initialState = useMemo<UseFetchType<T>>(() => ({
         data: undefined,
         error: null,
@@ -27,7 +27,11 @@ export const useFetch = <T = {}>(url: string): UseFetchType<T> => {
 
         let canceled = false;
 
-        fetch(url)
+        callback()
+            .then((data) => !canceled && setData(data))
+            .catch((error) => !canceled && setError(error.message));
+
+        /* fetch(url)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(
@@ -38,12 +42,12 @@ export const useFetch = <T = {}>(url: string): UseFetchType<T> => {
                 return response.json();
             })
             .then((data) => !canceled && setData(data))
-            .catch((error) => !canceled && setError(error.message));
+            .catch((error) => !canceled && setError(error.message)); */
 
         return () => {
             canceled = true;
         };
-    }, [initialState, setData, setError, url]);
+    }, [callback, initialState, setData, setError]);
 
     return dataState;
 };

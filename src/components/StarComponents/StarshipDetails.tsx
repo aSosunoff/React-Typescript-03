@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useSetIdContext } from "../../context/SetIdContext";
-import { useStarships } from "../../utils/SwapiService";
+import { useStarships } from "../../hooks/useSwapiService";
 import Details, { Record } from "../Details";
 import Spinner from "../Spinner";
 

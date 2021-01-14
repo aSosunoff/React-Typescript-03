@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useSetIdContext } from "../../context/SetIdContext";
-import { usePlanet } from "../../utils/SwapiService";
+import { usePlanet } from "../../hooks/useSwapiService";
 import Details, { Record } from "../Details";
 import Spinner from "../Spinner";
 

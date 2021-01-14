@@ -1,7 +1,7 @@
 import React from "react";
 import { useSetIdContext } from "../../context/SetIdContext";
 import { PlanetType } from "../../types/PlanetType";
-import { useAllPlanet } from "../../utils/SwapiService";
+import { useAllPlanet } from "../../hooks/useSwapiService";
 import ItemList from "../ItemList";
 import Spinner from "../Spinner";
 

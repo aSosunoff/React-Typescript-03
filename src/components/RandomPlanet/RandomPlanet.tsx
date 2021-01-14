@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import cn from "classnames";
 import styles from "./RandomPlanet.module.scss";
-import { usePlanet } from "../../utils/SwapiService";
+import { usePlanet } from "../../hooks/useSwapiService";
 import { useInterval } from "../../hooks/useInterval";
 import Spinner from "../Spinner";
 import PlanetView from "./PlanetView";

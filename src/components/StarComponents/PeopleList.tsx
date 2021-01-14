@@ -1,7 +1,7 @@
 import React from "react";
 import { useSetIdContext } from "../../context/SetIdContext";
 import { PersonType } from "../../types/PersonType";
-import { useAllPeople } from "../../utils/SwapiService";
+import { useAllPeople } from "../../hooks/useSwapiService";
 import ItemList from "../ItemList";
 import Spinner from "../Spinner";
 
