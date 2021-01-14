@@ -15,58 +15,49 @@ enum ApiResource {
 
 const API_BASE = 'https://swapi.dev/api';
 
-export class SwapiService implements ISwapiService {
-    static getIdFromUrl(url: string) {
-        const match = url.match(/\/(?<ID>[0-9]+)\/$/);
-        return match?.groups?.ID || '0';
-    };
-
-    static parseId<T extends { url: string }>(item: T) {
-        return ({ ...item, id: SwapiService.getIdFromUrl(item.url) })
-    }
-
-    async getAllPeople() {
+export class SwapiService extends ISwapiService {
+    getAllPeople = async () => {
         const data = await Fetch(`${API_BASE}/${ApiResource.People}`) as PeopleType;
 
         if (data.results.length) {
-            data.results = data.results.map(SwapiService.parseId);
+            data.results = data.results.map(this.parseId);
         }
 
         return data;
     }
 
-    async getPerson(id: string) {
+    getPerson = async (id: string) => {
         let data = await Fetch(`${API_BASE}/${ApiResource.People}/${id}`) as PersonType;
-        return data ? SwapiService.parseId(data) : data;
+        return data ? this.parseId(data) : data;
     }
 
-    async getAllPlanet() {
+    getAllPlanet = async () => {
         const data = await Fetch(`${API_BASE}/${ApiResource.Planets}`) as PlanetsType;
 
         if (data.results.length) {
-            data.results = data.results.map(SwapiService.parseId);
+            data.results = data.results.map(this.parseId);
         }
 
         return data;
     };
 
-    async getPlanet(id: string) {
+    getPlanet = async (id: string) => {
         const data = await Fetch(`${API_BASE}/${ApiResource.Planets}/${id}`) as PlanetType;
-        return data ? SwapiService.parseId(data) : data;
+        return data ? this.parseId(data) : data;
     };
 
-    async getAllStarships() {
+    getAllStarships = async () => {
         const data = await Fetch(`${API_BASE}/${ApiResource.Starships}`) as StarshipsType;
 
         if (data.results.length) {
-            data.results = data.results.map(SwapiService.parseId);
+            data.results = data.results.map(this.parseId);
         }
 
         return data;
     };
 
-    async getStarship(id: string) {
+    getStarship = async (id: string) => {
         const data = await Fetch(`${API_BASE}/${ApiResource.Starships}/${id}`) as StarshipType;
-        return data ? SwapiService.parseId(data) : data;
+        return data ? this.parseId(data) : data;
     };
 }
