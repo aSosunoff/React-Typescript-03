@@ -9,6 +9,8 @@ import { StarshipType } from "../types/StarshipType";
 import { allPeople, allPlanet, allStarships } from './FakeData.json';
 
 export class FakeSwapiService extends ISwapiService {
+    name = 'FakeSwapiService';
+
     getAllPeople = async (): Promise<PeopleType> => {
         allPeople.results = allPeople.results.map(this.parseId);
         return allPeople as any;

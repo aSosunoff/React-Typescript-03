@@ -1,8 +1,10 @@
 import React from "react";
 import cn from "classnames";
 import styles from "./Header.module.scss";
+import { useSwapiServiceContext } from "../../context/SwapiServiceContext";
 
 const Header: React.FC = () => {
+  const { toggleService, nameService } = useSwapiServiceContext();
   return (
     <div className={cn("d-flex", styles.header)}>
       <h3>
@@ -19,6 +21,17 @@ const Header: React.FC = () => {
           <a href="/#">Starships</a>
         </li>
       </ul>
+
+      <button
+        onClick={toggleService}
+        className="btn btn-primary btn-sm"
+        style={{
+          height: "2.2rem",
+          marginTop: "3px",
+        }}
+      >
+        Change Service ( current {nameService} )
+      </button>
     </div>
   );
 };

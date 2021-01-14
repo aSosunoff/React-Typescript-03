@@ -6,6 +6,8 @@ import { StarshipsType } from "../types/StarshipsType";
 import { StarshipType } from "../types/StarshipType";
 
 export abstract class ISwapiService {
+    abstract name: string;
+
     abstract getAllPeople(): Promise<PeopleType>;
     abstract getPerson(id: string): Promise<PersonType>;
 

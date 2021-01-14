@@ -16,6 +16,8 @@ enum ApiResource {
 const API_BASE = 'https://swapi.dev/api';
 
 export class SwapiService extends ISwapiService {
+    name = 'SwapiService';
+
     getAllPeople = async () => {
         const data = await Fetch(`${API_BASE}/${ApiResource.People}`) as PeopleType;
 
