@@ -1,33 +1,33 @@
 import { useCallback, useMemo } from "react";
 import { useRequest } from "./useRequest";
-import { SwapiService_2 } from "../utils/Service";
+import { Service } from "../utils/SwapiService";
 
 export const useAllPeople = () => {
-    const getAllPeople = useMemo(() => SwapiService_2.getAllPeople, []);
+    const getAllPeople = useMemo(() => Service.getAllPeople, []);
     return useRequest(getAllPeople);
 };
 
 export const usePerson = (id: string) => {
-    const getPerson = useCallback(() => SwapiService_2.getPerson(id), [id]);
+    const getPerson = useCallback(() => Service.getPerson(id), [id]);
     return useRequest(getPerson);
 };
 
 export const useAllPlanet = () => {
-    const getAllPlanet = useMemo(() => SwapiService_2.getAllPlanet, []);
+    const getAllPlanet = useMemo(() => Service.getAllPlanet, []);
     return useRequest(getAllPlanet);
 };
 
 export const usePlanet = (id: string) => {
-    const getPlanet = useCallback(() => SwapiService_2.getPlanet(id), [id]);
+    const getPlanet = useCallback(() => Service.getPlanet(id), [id]);
     return useRequest(getPlanet);
 };
 
 export const useAllStarships = () => {
-    const getAllStarships = useMemo(() => SwapiService_2.getAllStarships, []);
+    const getAllStarships = useMemo(() => Service.getAllStarships, []);
     return useRequest(getAllStarships);
 };
 
 export const useStarships = (id: string) => {
-    const getStarship = useCallback(() => SwapiService_2.getStarship(id), [id]);
+    const getStarship = useCallback(() => Service.getStarship(id), [id]);
     return useRequest(getStarship);
 };
