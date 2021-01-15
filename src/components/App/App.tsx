@@ -31,12 +31,6 @@ const App: React.FC = () => {
 
       {showRandomPlanet ? <RandomPlanet isInterval={isRandom} /> : null}
 
-      {/* <div className={cn("row mb2", styles["button-row"])}>
-        <div className="col">
-          <ErrorButton />
-        </div>
-      </div> */}
-
       <PeoplePage />
 
       <PlanetPage />
