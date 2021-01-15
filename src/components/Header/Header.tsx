@@ -3,7 +3,7 @@ import cn from "classnames";
 import styles from "./Header.module.scss";
 import { useSwapiServiceContext } from "../../context/SwapiServiceContext";
 
-const Header: React.FC = () => {
+const Header: React.FC = ({ children }) => {
   const { toggleService, nameService } = useSwapiServiceContext();
   return (
     <div className="row">
@@ -12,6 +12,7 @@ const Header: React.FC = () => {
           <h3>
             <a href="/#">Star DB</a>
           </h3>
+
           <ul className="d-flex">
             <li>
               <a href="/#">People</a>
@@ -34,6 +35,12 @@ const Header: React.FC = () => {
           >
             Change Service ( current {nameService} )
           </button>
+
+          <ul className="d-flex">
+            {React.Children.map(children, (child) => (
+              <li>{React.cloneElement(child as any)}</li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>
