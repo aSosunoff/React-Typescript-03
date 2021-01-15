@@ -2,6 +2,7 @@ import React from "react";
 import cn from "classnames";
 import styles from "./Header.module.scss";
 import { useSwapiServiceContext } from "../../context/SwapiServiceContext";
+import ErrorButton from "../ErrorButton";
 
 const Header: React.FC = ({ children }) => {
   const { toggleService, nameService } = useSwapiServiceContext();
@@ -35,6 +36,13 @@ const Header: React.FC = ({ children }) => {
           >
             Change Service ( current {nameService} )
           </button>
+
+          <ErrorButton
+            style={{
+              height: "2.2rem",
+              marginTop: "3px",
+            }}
+          />
 
           <ul className="d-flex" style={{ paddingLeft: 0 }}>
             {React.Children.map(children, (child) => (

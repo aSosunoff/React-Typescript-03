@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import cn from "classnames";
 import Header from "../Header";
 import styles from "./App.module.scss";
-import ErrorButton from "../ErrorButton";
+
 import PeoplePage from "../Pages/PeoplePage";
 import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
 import { withComponentAsHOC } from "../../HOC/withComponentAsHOC";
@@ -26,15 +26,16 @@ const App: React.FC = () => {
           value={showRandomPlanet}
           onClick={setShowRandomPlanet}
         />
+        
       </Header>
 
       {showRandomPlanet ? <RandomPlanet isInterval={isRandom} /> : null}
 
-      <div className={cn("row mb2", styles["button-row"])}>
+      {/* <div className={cn("row mb2", styles["button-row"])}>
         <div className="col">
           <ErrorButton />
         </div>
-      </div>
+      </div> */}
 
       <PeoplePage />
 
