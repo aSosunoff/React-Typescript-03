@@ -12,6 +12,8 @@ import { Compose } from "../../utils/Compose";
 import { SwapiServiceProvider } from "../../context/SwapiServiceContext";
 import RandomPlanet from "../RandomPlanet";
 import { CustomSwitch } from "../UI";
+import { Redirect, Route, Switch } from "react-router-dom";
+import { Pages } from "../../Enums/Pages";
 
 const App: React.FC = () => {
   const [showRandomPlanet, setShowRandomPlanet] = useState(true);
@@ -26,16 +28,25 @@ const App: React.FC = () => {
           value={showRandomPlanet}
           onClick={setShowRandomPlanet}
         />
-        
       </Header>
 
       {showRandomPlanet ? <RandomPlanet isInterval={isRandom} /> : null}
 
-      <PeoplePage />
+      <Switch>
+        <Redirect exact from={Pages.HOME} to={Pages.PEOPLE} />
 
-      <PlanetPage />
+        <Route path={Pages.PEOPLE}>
+          <PeoplePage />
+        </Route>
 
-      <StarshipPage />
+        <Route path={Pages.PLANET}>
+          <PlanetPage />
+        </Route>
+
+        <Route path={Pages.STARSHIP}>
+          <StarshipPage />
+        </Route>
+      </Switch>
     </div>
   );
 };

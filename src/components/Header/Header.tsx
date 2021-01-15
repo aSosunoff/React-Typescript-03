@@ -3,6 +3,8 @@ import cn from "classnames";
 import styles from "./Header.module.scss";
 import { useSwapiServiceContext } from "../../context/SwapiServiceContext";
 import ErrorButton from "../ErrorButton";
+import { Link } from "react-router-dom";
+import { Pages } from "../../Enums/Pages";
 
 const Header: React.FC = ({ children }) => {
   const { toggleService, nameService } = useSwapiServiceContext();
@@ -11,18 +13,18 @@ const Header: React.FC = ({ children }) => {
       <div className="col">
         <div className={cn("d-flex", styles.header)}>
           <h3>
-            <a href="/#">Star DB</a>
+            <Link to={Pages.HOME}>Star DB</Link>
           </h3>
 
           <ul className="d-flex">
             <li>
-              <a href="/#">People</a>
+              <Link to={Pages.PEOPLE}>People</Link>
             </li>
             <li>
-              <a href="/#">Planets</a>
+              <Link to={Pages.PLANET}>Planets</Link>
             </li>
             <li>
-              <a href="/#">Starships</a>
+              <Link to={Pages.STARSHIP}>Starships</Link>
             </li>
           </ul>
 
