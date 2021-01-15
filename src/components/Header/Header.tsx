@@ -36,7 +36,7 @@ const Header: React.FC = ({ children }) => {
             Change Service ( current {nameService} )
           </button>
 
-          <ul className="d-flex">
+          <ul className="d-flex" style={{ paddingLeft: 0 }}>
             {React.Children.map(children, (child) => (
               <li>{React.cloneElement(child as any)}</li>
             ))}
