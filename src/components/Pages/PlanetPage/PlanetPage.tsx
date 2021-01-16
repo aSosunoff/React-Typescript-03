@@ -1,6 +1,6 @@
 import React from "react";
 import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
-import { withComponentAsHOC } from "../../../HOC/withComponentAsHOC";
+import { Hoc } from "../../../HOC/Hoc";
 import Row from "../../Row";
 import { PlanetDetails, PlanetList } from "../../StarComponents/StarComponents";
 import { Compose } from "../../../utils/Compose";
@@ -18,6 +18,6 @@ const PlanetPage: React.FC = () => {
 };
 
 export default Compose(
-  withComponentAsHOC(ErrorBoundaryIndicator, () => null),
-  withComponentAsHOC(SetIdProvider, () => null)
+  Hoc(ErrorBoundaryIndicator, () => null),
+  Hoc(SetIdProvider, () => null)
 )(PlanetPage);

@@ -1,6 +1,6 @@
 import React from "react";
 import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
-import { withComponentAsHOC } from "../../../HOC/withComponentAsHOC";
+import { Hoc } from "../../../HOC/Hoc";
 import Row from "../../Row";
 import {
   StarshipDetails,
@@ -21,6 +21,6 @@ const StarshipPage: React.FC = () => {
 };
 
 export default Compose(
-  withComponentAsHOC(ErrorBoundaryIndicator, () => null),
-  withComponentAsHOC(SetIdProvider, () => null)
+  Hoc(ErrorBoundaryIndicator, () => null),
+  Hoc(SetIdProvider, () => null)
 )(StarshipPage);

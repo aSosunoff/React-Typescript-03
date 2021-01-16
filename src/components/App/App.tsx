@@ -7,7 +7,7 @@ import PeoplePage from "../Pages/PeoplePage";
 import PlanetPage from "../Pages/PlanetPage";
 import StarshipPage from "../Pages/StarshipPage";
 import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
-import { withComponentAsHOC } from "../../HOC/withComponentAsHOC";
+import { Hoc } from "../../HOC/Hoc";
 import { Compose } from "../../utils/Compose";
 import { SwapiServiceProvider } from "../../context/SwapiServiceContext";
 import RandomPlanet from "../RandomPlanet";
@@ -52,6 +52,6 @@ const App: React.FC = () => {
 };
 
 export default Compose(
-  withComponentAsHOC(ErrorBoundaryIndicator, () => null),
-  withComponentAsHOC(SwapiServiceProvider, () => null)
+  Hoc(ErrorBoundaryIndicator, () => null),
+  Hoc(SwapiServiceProvider, () => null)
 )(App);
