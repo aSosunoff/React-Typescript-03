@@ -16,6 +16,6 @@ const PeoplePage: React.FC = () => {
 };
 
 export default Compose(
-  withComponentAsHOC(ErrorBoundaryIndicator, {}),
-  withComponentAsHOC(SetIdProvider, {})
+  withComponentAsHOC(ErrorBoundaryIndicator, () => null),
+  withComponentAsHOC(SetIdProvider, () => null)
 )(PeoplePage);

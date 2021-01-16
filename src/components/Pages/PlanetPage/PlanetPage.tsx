@@ -2,22 +2,22 @@ import React from "react";
 import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
 import { withComponentAsHOC } from "../../../HOC/withComponentAsHOC";
 import Row from "../../Row";
-import { BasePageType } from "../../../types/BasePageType";
 import { PlanetDetails, PlanetList } from "../../StarComponents/StarComponents";
 import { Compose } from "../../../utils/Compose";
 import { SetIdProvider } from "../../../context/SetIdContext";
 
-const PlanetPage: React.FC<BasePageType> = (props) => {
+const PlanetPage: React.FC = () => {
   return (
-    <Row
-      {...props}
-      renderLeft={() => <PlanetList />}
-      renderRight={() => <PlanetDetails />}
-    />
+    <SetIdProvider>
+      <Row
+        renderLeft={() => <PlanetList />}
+        renderRight={() => <PlanetDetails />}
+      />
+    </SetIdProvider>
   );
 };
 
 export default Compose(
-  withComponentAsHOC(ErrorBoundaryIndicator, {}),
-  withComponentAsHOC(SetIdProvider, {})
+  withComponentAsHOC(ErrorBoundaryIndicator, () => null),
+  withComponentAsHOC(SetIdProvider, () => null)
 )(PlanetPage);
