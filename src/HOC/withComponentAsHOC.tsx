@@ -1,18 +1,24 @@
-export const withComponentAsHOC = <TWrapper,>(
-  WrapperComponent: React.FC<TWrapper>,
-  wrapperProps: TWrapper
-) => {
-  return <TComponent,>(Component: React.FC<TComponent>) => {
-    const ComponentAsHOC = (props: TComponent) => {
+export function withComponentAsHOC<TWrapperProps, TComponentProps>(
+  WrapperComponent: React.ComponentType<TWrapperProps>,
+  mapProps: (wrapperProps: TComponentProps) => TWrapperProps
+) {
+  return function StartComponent(
+    Component: React.ComponentType<TComponentProps>
+  ) {
+    function ComponentAsHOC(componentProps: TComponentProps) {
+      const props = mapProps
+        ? mapProps({ ...componentProps })
+        : ({} as TWrapperProps);
+
       return (
-        <WrapperComponent {...wrapperProps}>
-          <Component {...props} />
+        <WrapperComponent {...props}>
+          <Component {...componentProps} />
         </WrapperComponent>
       );
-    };
+    }
 
     ComponentAsHOC.displayName = `${WrapperComponent.name}.WithComponentAsHOC`;
 
     return ComponentAsHOC;
   };
-};
+}
