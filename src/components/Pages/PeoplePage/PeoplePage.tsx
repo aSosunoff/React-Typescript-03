@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
 import { Hoc } from "../../../HOC/Hoc";
 import { PeopleDetails, PeopleList } from "../../StarComponents";
@@ -12,12 +12,18 @@ const PeoplePage: React.FC = () => {
 
   const match = useRouteMatch<IPeopleDetails>(Pages.PEOPLE_ID);
 
+  const rightSpace = useMemo(
+    () =>
+      match ? <PeopleDetails id={match.params.id} /> : <>Выберите человека</>,
+    [match]
+  );
+
   return (
     <Row
       renderLeft={() => (
         <PeopleList onItemSelected={(id) => history.push(id)} />
       )}
-      renderRight={() => <PeopleDetails id={match?.params.id || ""} />}
+      renderRight={() => rightSpace}
     />
   );
 };
