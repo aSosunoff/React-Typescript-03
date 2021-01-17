@@ -3,7 +3,6 @@ import { PersonType } from "../../types/PersonType";
 import { useAllPeople } from "../../hooks/useSwapiService";
 import ItemList from "../ItemList";
 import Spinner from "../Spinner";
-import { Pages } from "../../Enums/Pages";
 import { useHistory } from "react-router-dom";
 
 export const PeopleList: React.FC = () => {
@@ -16,7 +15,7 @@ export const PeopleList: React.FC = () => {
   ) : (
     <ItemList<PersonType>
       list={results}
-      setId={(id) => history.push(`${Pages.PEOPLE}/${id}`)}
+      setId={(id) => history.push(id)}
       renderTitle={({ name, gender, birth_year }) =>
         `${name} (${gender}), ${birth_year}`
       }

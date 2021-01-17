@@ -1,12 +1,12 @@
 export enum Pages {
     HOME = '/',
 
-    PEOPLE = '/people',
+    PEOPLE = '/people/',
     PEOPLE_ID = '/people/:id',
 
-    PLANET = '/planet',
+    PLANET = '/planet/',
     PLANET_ID = '/planet/:id',
 
-    STARSHIP = '/starship',
+    STARSHIP = '/starship/',
     STARSHIP_ID = '/starship/:id',
 }

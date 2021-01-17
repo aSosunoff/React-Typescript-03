@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useRouteMatch, withRouter } from "react-router-dom";
+import { useRouteMatch } from "react-router-dom";
 import { Pages } from "../../Enums/Pages";
 import { usePlanet } from "../../hooks/useSwapiService";
 import Details, { Record } from "../Details";

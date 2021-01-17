@@ -3,7 +3,6 @@ import { StarshipType } from "../../types/StarshipType";
 import { useAllStarships } from "../../hooks/useSwapiService";
 import ItemList from "../ItemList";
 import Spinner from "../Spinner";
-import { Pages } from "../../Enums/Pages";
 import { useHistory } from "react-router-dom";
 
 export const StarshipList: React.FC = () => {
@@ -16,7 +15,7 @@ export const StarshipList: React.FC = () => {
   ) : (
     <ItemList<StarshipType>
       list={results}
-      setId={(id) => history.push(`${Pages.PLANET}/${id}`)}
+      setId={(id) => history.push(id)}
       renderTitle={({ name }) => `${name}`}
     />
   );
