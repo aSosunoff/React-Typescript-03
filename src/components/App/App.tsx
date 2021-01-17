@@ -14,7 +14,6 @@ import RandomPlanet from "../RandomPlanet";
 import { CustomSwitch } from "../UI";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { Pages } from "../../Enums/Pages";
-import { PlanetDetails, StarshipDetails } from "../StarComponents";
 
 const App: React.FC = () => {
   const [showRandomPlanet, setShowRandomPlanet] = useState(true);
