@@ -14,11 +14,7 @@ import RandomPlanet from "../RandomPlanet";
 import { CustomSwitch } from "../UI";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { Pages } from "../../Enums/Pages";
-import {
-  PeopleDetails,
-  PlanetDetails,
-  StarshipDetails,
-} from "../StarComponents";
+import { PlanetDetails, StarshipDetails } from "../StarComponents";
 
 const App: React.FC = () => {
   const [showRandomPlanet, setShowRandomPlanet] = useState(true);
@@ -40,28 +36,16 @@ const App: React.FC = () => {
       <Switch>
         <Redirect exact from={Pages.HOME} to={Pages.PEOPLE} />
 
-        <Route exact path={Pages.PEOPLE}>
+        <Route exact path={Pages.PEOPLE_ID_Q}>
           <PeoplePage />
         </Route>
 
-        <Route path={Pages.PEOPLE_ID}>
-          <PeopleDetails />
-        </Route>
-
-        <Route exact path={Pages.PLANET}>
+        <Route exact path={Pages.PLANET_ID_Q}>
           <PlanetPage />
         </Route>
 
-        <Route path={Pages.PLANET_ID}>
-          <PlanetDetails />
-        </Route>
-
-        <Route exact path={Pages.STARSHIP}>
+        <Route exact path={Pages.STARSHIP_ID_Q}>
           <StarshipPage />
-        </Route>
-
-        <Route path={Pages.STARSHIP_ID}>
-          <StarshipDetails />
         </Route>
       </Switch>
     </div>

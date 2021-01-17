@@ -3,19 +3,20 @@ import { PersonType } from "../../types/PersonType";
 import { useAllPeople } from "../../hooks/useSwapiService";
 import ItemList from "../ItemList";
 import Spinner from "../Spinner";
-import { useHistory } from "react-router-dom";
 
-export const PeopleList: React.FC = () => {
+interface IPeopleList {
+  onItemSelected: (id: string) => void;
+}
+
+export const PeopleList: React.FC<IPeopleList> = ({ onItemSelected }) => {
   const { data: { results = [] } = {}, loading } = useAllPeople();
-
-  const history = useHistory();
 
   return loading ? (
     <Spinner />
   ) : (
     <ItemList<PersonType>
       list={results}
-      setId={(id) => history.push(id)}
+      setId={onItemSelected}
       renderTitle={({ name, gender, birth_year }) =>
         `${name} (${gender}), ${birth_year}`
       }

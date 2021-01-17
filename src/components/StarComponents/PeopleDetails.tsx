@@ -1,18 +1,14 @@
 import React, { useMemo } from "react";
-import { useRouteMatch } from "react-router-dom";
-import { Pages } from "../../Enums/Pages";
 import { usePerson } from "../../hooks/useSwapiService";
 import Details, { Record } from "../Details";
 import Spinner from "../Spinner";
 
-interface IPeopleDetails {
+export interface IPeopleDetails {
   id: string;
 }
 
-export const PeopleDetails: React.FC = () => {
-  const match = useRouteMatch<IPeopleDetails>(Pages.PEOPLE_ID);
-
-  const { data, loading } = usePerson(match?.params.id || "");
+export const PeopleDetails: React.FC<IPeopleDetails> = ({ id }) => {
+  const { data, loading } = usePerson(id);
 
   const DetailsComponent = useMemo(
     () =>
