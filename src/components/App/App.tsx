@@ -1,7 +1,4 @@
 import React, { useCallback, useState } from "react";
-import cn from "classnames";
-import Header from "../Header";
-import styles from "./App.module.scss";
 
 import {
   HomePage,
@@ -16,14 +13,11 @@ import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
 import { Hoc } from "../../HOC/Hoc";
 import { Compose } from "../../utils/Compose";
 import { SwapiServiceProvider } from "../../context/SwapiServiceContext";
-import RandomPlanet from "../RandomPlanet";
-import { CustomSwitch } from "../UI";
-import { Route, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import { Pages } from "../../Enums/Pages";
+import MainLayout from "../Layout";
 
 const App: React.FC = () => {
-  const [showRandomPlanet, setShowRandomPlanet] = useState(true);
-  const [isRandom, setRandom] = useState(false);
   const [isLoggedIn, setLoggedIn] = useState(false);
 
   const onLogin = useCallback(() => {
@@ -31,48 +25,35 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className={cn("container", styles["stardb-app"])}>
-      <Header>
-        <CustomSwitch title="On/Off" value={isRandom} onClick={setRandom} />
-        <CustomSwitch
-          title="Show/Hide"
-          value={showRandomPlanet}
-          onClick={setShowRandomPlanet}
-        />
-      </Header>
+    <Switch>
+      <MainLayout exact path={Pages.HOME}>
+        <HomePage />
+      </MainLayout>
 
-      {showRandomPlanet ? <RandomPlanet isInterval={isRandom} /> : null}
+      <MainLayout exact path={Pages.PEOPLE_ID_Q}>
+        <PeoplePage />
+      </MainLayout>
 
-      <Switch>
-        <Route exact path={Pages.HOME}>
-          <HomePage />
-        </Route>
+      <MainLayout exact path={Pages.PLANET_ID_Q}>
+        <PlanetPage />
+      </MainLayout>
 
-        <Route exact path={Pages.PEOPLE_ID_Q}>
-          <PeoplePage />
-        </Route>
+      <MainLayout exact path={Pages.STARSHIP_ID_Q}>
+        <StarshipPage />
+      </MainLayout>
 
-        <Route exact path={Pages.PLANET_ID_Q}>
-          <PlanetPage />
-        </Route>
+      <MainLayout path={Pages.LOGIN}>
+        <LoginPage isLoggedIn={isLoggedIn} onLogin={onLogin} />
+      </MainLayout>
 
-        <Route exact path={Pages.STARSHIP_ID_Q}>
-          <StarshipPage />
-        </Route>
+      <MainLayout path={Pages.SECRET}>
+        <SecretPage isLoggedIn={isLoggedIn} />
+      </MainLayout>
 
-        <Route path={Pages.LOGIN}>
-          <LoginPage isLoggedIn={isLoggedIn} onLogin={onLogin} />
-        </Route>
-
-        <Route path={Pages.SECRET}>
-          <SecretPage isLoggedIn={isLoggedIn} />
-        </Route>
-
-        <Route>
-          <NotFound404Page />
-        </Route>
-      </Switch>
-    </div>
+      <MainLayout>
+        <NotFound404Page />
+      </MainLayout>
+    </Switch>
   );
 };
 
