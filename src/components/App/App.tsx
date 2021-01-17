@@ -3,9 +3,7 @@ import cn from "classnames";
 import Header from "../Header";
 import styles from "./App.module.scss";
 
-import PeoplePage from "../Pages/PeoplePage";
-import PlanetPage from "../Pages/PlanetPage";
-import StarshipPage from "../Pages/StarshipPage";
+import { PeoplePage, PlanetPage, StarshipPage } from "../Pages";
 import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
 import { Hoc } from "../../HOC/Hoc";
 import { Compose } from "../../utils/Compose";

@@ -1,11 +1,11 @@
 import React, { useMemo } from "react";
-import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
-import { Hoc } from "../../../HOC/Hoc";
-import { PeopleDetails, PeopleList } from "../../StarComponents";
 import { useHistory, useRouteMatch } from "react-router-dom";
-import Row from "../../Row";
-import { Pages } from "../../../Enums/Pages";
-import { IPeopleDetails } from "../../StarComponents/PeopleDetails";
+import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
+import { Hoc } from "../../HOC/Hoc";
+import { PeopleDetails, PeopleList } from "../StarComponents";
+import Row from "../Row";
+import { Pages } from "../../Enums/Pages";
+import { IPeopleDetails } from "../StarComponents/PeopleDetails";
 
 const PeoplePage: React.FC = () => {
   const history = useHistory();
