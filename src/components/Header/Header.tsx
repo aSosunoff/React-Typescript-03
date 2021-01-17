@@ -44,9 +44,9 @@ const Header: React.FC = ({ children }) => {
         </div>
       </div>
 
-      <div className="row">
+      <div className="row"> 
         <div className="col">
-          <div className={cn("d-flex", styles.header)}>
+          <div className={cn("d-flex")}>
             <button
               onClick={toggleService}
               className="btn btn-primary btn-sm"
