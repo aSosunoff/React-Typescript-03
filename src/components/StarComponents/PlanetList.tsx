@@ -3,19 +3,20 @@ import { PlanetType } from "../../types/PlanetType";
 import { useAllPlanet } from "../../hooks/useSwapiService";
 import ItemList from "../ItemList";
 import Spinner from "../Spinner";
-import { useHistory } from "react-router-dom";
 
-export const PlanetList: React.FC = () => {
+interface IPlanetList {
+  onItemSelected: (id: string) => void;
+}
+
+export const PlanetList: React.FC<IPlanetList> = ({ onItemSelected }) => {
   const { data: { results = [] } = {}, loading } = useAllPlanet();
-
-  const history = useHistory();
 
   return loading ? (
     <Spinner />
   ) : (
     <ItemList<PlanetType>
       list={results}
-      setId={(id) => history.push(id)}
+      setId={onItemSelected}
       renderTitle={({ name }) => `${name}`}
     />
   );
