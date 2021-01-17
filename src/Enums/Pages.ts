@@ -12,4 +12,7 @@ export enum Pages {
     STARSHIP = '/starship/',
     STARSHIP_ID = '/starship/:id',
     STARSHIP_ID_Q = '/starship/:id?',
+
+    LOGIN = '/login',
+    SECRET = '/secret',
 }

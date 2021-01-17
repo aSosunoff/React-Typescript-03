@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import cn from "classnames";
 import Header from "../Header";
 import styles from "./App.module.scss";
 
-import { PeoplePage, PlanetPage, StarshipPage } from "../Pages";
+import {
+  LoginPage,
+  PeoplePage,
+  PlanetPage,
+  SecretPage,
+  StarshipPage,
+} from "../Pages";
 import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
 import { Hoc } from "../../HOC/Hoc";
 import { Compose } from "../../utils/Compose";
@@ -16,6 +22,11 @@ import { Pages } from "../../Enums/Pages";
 const App: React.FC = () => {
   const [showRandomPlanet, setShowRandomPlanet] = useState(true);
   const [isRandom, setRandom] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
+  const onLogin = useCallback(() => {
+    setLoggedIn(true);
+  }, []);
 
   return (
     <div className={cn("container", styles["stardb-app"])}>
@@ -43,6 +54,14 @@ const App: React.FC = () => {
 
         <Route exact path={Pages.STARSHIP_ID_Q}>
           <StarshipPage />
+        </Route>
+
+        <Route path={Pages.LOGIN}>
+          <LoginPage isLoggedIn={isLoggedIn} onLogin={onLogin} />
+        </Route>
+
+        <Route path={Pages.SECRET}>
+          <SecretPage isLoggedIn={isLoggedIn} />
         </Route>
       </Switch>
     </div>

@@ -26,6 +26,12 @@ const Header: React.FC = ({ children }) => {
             <li>
               <Link to={Pages.STARSHIP}>Starships</Link>
             </li>
+            <li>
+              <Link to={Pages.LOGIN}>Login</Link>
+            </li>
+            <li>
+              <Link to={Pages.SECRET}>Secret</Link>
+            </li>
           </ul>
 
           <button
