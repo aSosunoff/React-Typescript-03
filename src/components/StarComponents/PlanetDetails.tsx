@@ -1,13 +1,15 @@
 import React, { useMemo } from "react";
+import { Hoc } from "../../HOC/Hoc";
 import { usePlanet } from "../../hooks/useSwapiService";
 import Details, { Record } from "../Details";
+import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
 import Spinner from "../Spinner";
 
 export interface IPlanetDetails {
   id: string;
 }
 
-export const PlanetDetails: React.FC<IPlanetDetails> = ({ id }) => {
+const _PlanetDetails: React.FC<IPlanetDetails> = ({ id }) => {
   const { data, loading } = usePlanet(id);
 
   const DetailsComponent = useMemo(
@@ -26,3 +28,8 @@ export const PlanetDetails: React.FC<IPlanetDetails> = ({ id }) => {
 
   return loading ? <Spinner /> : DetailsComponent;
 };
+
+export const PlanetDetails = Hoc<{}, IPlanetDetails>(
+  ErrorBoundaryIndicator,
+  () => ({})
+)(_PlanetDetails);

@@ -1,13 +1,15 @@
 import React, { useMemo } from "react";
+import { Hoc } from "../../HOC/Hoc";
 import { useStarships } from "../../hooks/useSwapiService";
 import Details, { Record } from "../Details";
+import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
 import Spinner from "../Spinner";
 
 export interface IStarshipDetails {
   id: string;
 }
 
-export const StarshipDetails: React.FC<IStarshipDetails> = ({ id }) => {
+const _StarshipDetails: React.FC<IStarshipDetails> = ({ id }) => {
   const { data, loading } = useStarships(id);
 
   const DetailsComponent = useMemo(
@@ -27,3 +29,8 @@ export const StarshipDetails: React.FC<IStarshipDetails> = ({ id }) => {
 
   return loading ? <Spinner /> : DetailsComponent;
 };
+
+export const StarshipDetails = Hoc<{}, IStarshipDetails>(
+  ErrorBoundaryIndicator,
+  () => ({})
+)(_StarshipDetails);
