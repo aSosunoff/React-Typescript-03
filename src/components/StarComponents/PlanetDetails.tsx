@@ -1,13 +1,18 @@
 import React, { useMemo } from "react";
-import { useSetIdContext } from "../../context/SetIdContext";
+import { useRouteMatch, withRouter } from "react-router-dom";
+import { Pages } from "../../Enums/Pages";
 import { usePlanet } from "../../hooks/useSwapiService";
 import Details, { Record } from "../Details";
 import Spinner from "../Spinner";
 
-export const PlanetDetails: React.FC = () => {
-  const { id } = useSetIdContext();
+interface IPlanetDetails {
+  id: string;
+}
 
-  const { data, loading } = usePlanet(id);
+export const PlanetDetails: React.FC = () => {
+  const match = useRouteMatch<IPlanetDetails>(Pages.PLANET_ID);
+
+  const { data, loading } = usePlanet(match?.params.id || "");
 
   const DetailsComponent = useMemo(
     () =>

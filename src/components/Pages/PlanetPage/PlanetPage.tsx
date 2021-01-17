@@ -1,23 +1,9 @@
 import React from "react";
 import ErrorBoundaryIndicator from "../../ErrorBoundaryIndicator";
 import { Hoc } from "../../../HOC/Hoc";
-import Row from "../../Row";
-import { PlanetDetails, PlanetList } from "../../StarComponents/StarComponents";
-import { Compose } from "../../../utils/Compose";
-import { SetIdProvider } from "../../../context/SetIdContext";
-
+import { PlanetList } from "../../StarComponents";
 const PlanetPage: React.FC = () => {
-  return (
-    <SetIdProvider>
-      <Row
-        renderLeft={() => <PlanetList />}
-        renderRight={() => <PlanetDetails />}
-      />
-    </SetIdProvider>
-  );
+  return <PlanetList />;
 };
 
-export default Compose(
-  Hoc(ErrorBoundaryIndicator, () => null),
-  Hoc(SetIdProvider, () => null)
-)(PlanetPage);
+export default Hoc(ErrorBoundaryIndicator, () => null)(PlanetPage);

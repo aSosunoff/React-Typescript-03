@@ -11,13 +11,20 @@ SetIdContext.displayName = "SetIdContext";
 
 export const useSetIdContext = () => useContext(SetIdContext);
 
-export const SetIdProvider: React.FC = ({ children }) => {
-  const [id, setId] = useState("0");
+interface ISetIdProvider {
+  id?: string;
+}
+
+export const SetIdProvider: React.FC<ISetIdProvider> = ({
+  children,
+  id = "0",
+}) => {
+  const [idState, setId] = useState(id);
 
   return (
     <SetIdContext.Provider
       value={{
-        id,
+        id: idState,
         setId,
       }}
     >
