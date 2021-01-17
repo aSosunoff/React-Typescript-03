@@ -4,6 +4,7 @@ import StarshipPage from "./StarshipPage";
 import SecretPage from "./SecretPage";
 import LoginPage from "./LoginPage";
 import HomePage from "./HomePage";
+import NotFound404Page from "./NotFound404Page";
 
 export {
   PeoplePage,
@@ -12,4 +13,5 @@ export {
   SecretPage,
   LoginPage,
   HomePage,
+  NotFound404Page,
 };

@@ -6,6 +6,7 @@ import styles from "./App.module.scss";
 import {
   HomePage,
   LoginPage,
+  NotFound404Page,
   PeoplePage,
   PlanetPage,
   SecretPage,
@@ -65,6 +66,10 @@ const App: React.FC = () => {
 
         <Route path={Pages.SECRET}>
           <SecretPage isLoggedIn={isLoggedIn} />
+        </Route>
+
+        <Route>
+          <NotFound404Page />
         </Route>
       </Switch>
     </div>

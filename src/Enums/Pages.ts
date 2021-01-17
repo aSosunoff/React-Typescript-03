@@ -1,5 +1,6 @@
 export enum Pages {
     HOME = '/',
+    NOT_FOUND_404 = '/404',
 
     PEOPLE = '/people/',
     PEOPLE_ID = '/people/:id',
