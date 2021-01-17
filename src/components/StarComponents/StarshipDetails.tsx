@@ -1,18 +1,14 @@
 import React, { useMemo } from "react";
-import { useRouteMatch } from "react-router-dom";
-import { Pages } from "../../Enums/Pages";
 import { useStarships } from "../../hooks/useSwapiService";
 import Details, { Record } from "../Details";
 import Spinner from "../Spinner";
 
-interface IStarshipDetails {
+export interface IStarshipDetails {
   id: string;
 }
 
-export const StarshipDetails: React.FC = () => {
-  const match = useRouteMatch<IStarshipDetails>(Pages.STARSHIP_ID);
-
-  const { data, loading } = useStarships(match?.params.id || "");
+export const StarshipDetails: React.FC<IStarshipDetails> = ({ id }) => {
+  const { data, loading } = useStarships(id);
 
   const DetailsComponent = useMemo(
     () =>
