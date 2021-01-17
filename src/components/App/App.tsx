@@ -4,6 +4,7 @@ import Header from "../Header";
 import styles from "./App.module.scss";
 
 import {
+  HomePage,
   LoginPage,
   PeoplePage,
   PlanetPage,
@@ -16,7 +17,7 @@ import { Compose } from "../../utils/Compose";
 import { SwapiServiceProvider } from "../../context/SwapiServiceContext";
 import RandomPlanet from "../RandomPlanet";
 import { CustomSwitch } from "../UI";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { Pages } from "../../Enums/Pages";
 
 const App: React.FC = () => {
@@ -42,7 +43,9 @@ const App: React.FC = () => {
       {showRandomPlanet ? <RandomPlanet isInterval={isRandom} /> : null}
 
       <Switch>
-        <Redirect exact from={Pages.HOME} to={Pages.PEOPLE} />
+        <Route exact path={Pages.HOME}>
+          <HomePage />
+        </Route>
 
         <Route exact path={Pages.PEOPLE_ID_Q}>
           <PeoplePage />
