@@ -44,7 +44,7 @@ const Header: React.FC = ({ children }) => {
         </div>
       </div>
 
-      <div className="row"> 
+      <div className="row mb-3"> 
         <div className="col">
           <div className={cn("d-flex")}>
             <button
