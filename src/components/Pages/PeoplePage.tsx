@@ -13,17 +13,14 @@ const PeoplePage: React.FC = () => {
   const match = useRouteMatch<IPeopleDetails>(Pages.PEOPLE_ID);
 
   const rightSpace = useMemo(
-    () =>
-      match ? <PeopleDetails id={match.params.id} /> : <>Выберите человека</>,
+    () => (match ? <PeopleDetails id={match.params.id} /> : <>Выберите человека</>),
     [match]
   );
 
   return (
     <Row
-      renderLeft={() => (
-        <PeopleList onItemSelected={(id) => history.push(id)} />
-      )}
-      renderRight={() => rightSpace}
+      renderLeft={<PeopleList onItemSelected={(id) => history.push(id)} />}
+      renderRight={rightSpace}
     />
   );
 };

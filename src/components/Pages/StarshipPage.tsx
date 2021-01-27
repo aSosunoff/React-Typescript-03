@@ -4,10 +4,7 @@ import ErrorBoundaryIndicator from "../ErrorBoundaryIndicator";
 import { Hoc } from "../../HOC/Hoc";
 import { StarshipList } from "../StarComponents";
 import { Pages } from "../../Enums/Pages";
-import {
-  IStarshipDetails,
-  StarshipDetails,
-} from "../StarComponents/StarshipDetails";
+import { IStarshipDetails, StarshipDetails } from "../StarComponents/StarshipDetails";
 import Row from "../Row";
 
 const StarshipPage: React.FC = () => {
@@ -16,21 +13,14 @@ const StarshipPage: React.FC = () => {
   const match = useRouteMatch<IStarshipDetails>(Pages.STARSHIP_ID);
 
   const rightSpace = useMemo(
-    () =>
-      match ? (
-        <StarshipDetails id={match.params.id} />
-      ) : (
-        <>Выберите звездолёт</>
-      ),
+    () => (match ? <StarshipDetails id={match.params.id} /> : <>Выберите звездолёт</>),
     [match]
   );
 
   return (
     <Row
-      renderLeft={() => (
-        <StarshipList onItemSelected={(id) => history.push(id)} />
-      )}
-      renderRight={() => rightSpace}
+      renderLeft={<StarshipList onItemSelected={(id) => history.push(id)} />}
+      renderRight={rightSpace}
     />
   );
 };

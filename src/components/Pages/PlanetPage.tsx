@@ -13,17 +13,14 @@ const PlanetPage: React.FC = () => {
   const match = useRouteMatch<IPlanetDetails>(Pages.PLANET_ID);
 
   const rightSpace = useMemo(
-    () =>
-      match ? <PlanetDetails id={match.params.id} /> : <>Выберите планету</>,
+    () => (match ? <PlanetDetails id={match.params.id} /> : <>Выберите планету</>),
     [match]
   );
 
   return (
     <Row
-      renderLeft={() => (
-        <PlanetList onItemSelected={(id) => history.push(id)} />
-      )}
-      renderRight={() => rightSpace}
+      renderLeft={<PlanetList onItemSelected={(id) => history.push(id)} />}
+      renderRight={rightSpace}
     />
   );
 };
